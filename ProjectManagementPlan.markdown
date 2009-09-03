@@ -39,7 +39,7 @@ their roles on the project
 strategies that are proposed
  - include the rationale.
 
-## HARDWARE AND SOFTWARE RESOURCE REQUIREMENTS (BT)
+## HARDWARE AND SOFTWARE RESOURCE REQUIREMENTS (TC)
 
  - describe the hardware and software required to carry out the development.
  - both hardware and software must be available in the lab
