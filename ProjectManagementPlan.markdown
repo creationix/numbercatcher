@@ -33,7 +33,7 @@ their roles on the project
  - describe the lifecycle model used
  - include the rationale
 
-## RISK ANALYSIS (BT)
+## RISK ANALYSIS (TN)
 
  - describe possible project risks, the likelihood of these risks arising, and the risk reduction
 strategies that are proposed
