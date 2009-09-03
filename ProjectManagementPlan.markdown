@@ -1,18 +1,20 @@
 # Project Management Plan
  
-## TITLE PAGE
+## TITLE PAGE (RC)
 
-## ABSTRACT
+*TABLE OF CONTENTS*
+
+*LIST OF FIGURES*
+
+*LIST OF TABLES*
+
+*EVIDENCE THE DOCUMENT HAS BEEN PLACED UNDER CONFIGURATION MANAGEMENT*
+
+## ABSTRACT (RH)
 
  - brief summary of the plan
 
-## TABLE OF CONTENTS
-
-## LIST OF FIGURES
-
-## LIST OF TABLES
-
-## INTRODUCTION
+## INTRODUCTION (RC)
 
  - introduction to the entire plan
  - purpose and scope of the plan
@@ -20,42 +22,42 @@
 product, etc)
  - description of the structure of the plan
  
-## PROJECT ORGANIZATION
+## PROJECT ORGANIZATION (BT)
 
  - describe the way in which the development team is organized, the people involved, and
 their roles on the project
  - include the rationale
 
-## LIFECYCLE MODEL USED
+## LIFECYCLE MODEL USED (BT)
 
  - describe the lifecycle model used
  - include the rationale
 
-## RISK ANALYSIS
+## RISK ANALYSIS (BT)
 
  - describe possible project risks, the likelihood of these risks arising, and the risk reduction
 strategies that are proposed
  - include the rationale.
 
-## HARDWARE AND SOFTWARE RESOURCE REQUIREMENTS
+## HARDWARE AND SOFTWARE RESOURCE REQUIREMENTS (BT)
 
  - describe the hardware and software required to carry out the development.
  - both hardware and software must be available in the lab
  - include the rationale
 
-## DELIVERABLES, SCHEDULE
+## DELIVERABLES, SCHEDULE (RC)
 
  - describe the activities, dependencies between activities, the estimated time required to
 reach each milestone, and the allocation of people to activities
  - include the rationale.
 
-## MONITORING, REPORTING, AND CONTROLLING MECHANISMS
+## MONITORING, REPORTING, AND CONTROLLING MECHANISMS (TN)
 
  - describe the management reports that should be produced, when these should be produced,
 and the project monitoring and control mechanisms used
  - include the rationale
 
-## PROFESSIONAL STANDARDS
+## PROFESSIONAL STANDARDS (RH)
 
  - describe the expected behavior of the team members related to scholastic dishonesty,
 meeting schedule and quality expectations for tasks and deliverables. etc.
@@ -77,9 +79,7 @@ Examples of unacceptable behavior may include not delivering on time, delivering
 
 Valid reasons that must be considered include those listed for obtaining an incomplete standing in a course (illness, death in the family, travel for business or academic reasons, etc.)
 
-## EVIDENCE THE DOCUMENT HAS BEEN PLACED UNDER CONFIGURATION MANAGEMENT
-
-## REFERENCES
+## REFERENCES (RC)
 
  - complete, correctly formatted using IEEE standard
 
