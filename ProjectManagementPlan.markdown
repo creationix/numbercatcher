@@ -41,9 +41,40 @@ strategies that are proposed
 
 ## HARDWARE AND SOFTWARE RESOURCE REQUIREMENTS (TC)
 
- - describe the hardware and software required to carry out the development.
- - both hardware and software must be available in the lab
- - include the rationale
+Given the constraints of this project, most importantly the fact that this needs to be a simple web accessible app that can be index by a google appliance, and our desire as students to learn cutting edge technologies, we have decided on the following technologies:
+
+### Hosting
+
+The app will be hosted on a [Linode][] VPS (Virtual Private Server).  This server will be running the latest [Ubuntu][] Linux in 32 bit mode.  This is an extremely common setup for small to medium websites, and will therefore be easy for Techtronix to deploy when the project is handed over to them.
+
+### Backend
+
+The backend will be written in [Ruby 1.9][Ruby] using some popular framework.  Currently it's a choice between a [Sinatra][] backend with [RESTful][] resources added in or a stripped down [Rails][] app.  Both offer excellent community support and are easily installed on a stock linux server.
+
+We'll be using [Sqlite3][] for the persistent data store.  This is a simple to use and very simple to deploy RDMS.  The backend of [Sqlite3][] doesn't even require a running daemon process.  It's simple a binary file on the hard-drive that is accessed via a [ruby library][sqlite3-ruby].  So from the application developer's point of view, it's a regular sql server that responds to the regular SQL commands and queries.  But from the system administrator's point of view, it's just a flat file and a [library][sqlite3-ruby] to install.  Performance is more than adequate for the use case of this software system.
+
+### Source Control Management
+
+Our source control will be done through [Git][].  [Git][] is a open source distributed version control system.  It's very popular in the [Ruby][] community and they even offer a free place to host your repositories.  We will host ours there at [Github][].  This allows for visual browsing of the code and documents.  Team members who are not yet comfortable with git can use the web interface to modify and commit changes directly.
+
+The front-end will be served as pre-rendered html so that the google appliance can easily search and index it.  We will use [Less][] for [CSS][] and [HAML][] for the [XHTML][] and [CSS][] generation.  We will probably use prototype for the javascript framework.  The [XHTML][] generated will be semantically meaningful to give the most power to the Google engine.  All styling will be done through the [CSS][].
+
+This closely models a traditional [Ruby]/Linux stack used in production websites throughout the world.  This benefits both Techtronix
+
+[Linode]: http://www.linode.com/
+[Ubuntu]: http://www.ubuntu.com/
+[sqlite3-ruby]: http://sqlite-ruby.rubyforge.org/sqlite3/faq.html
+[RESTful]: http://en.wikipedia.org/wiki/Representational_State_Transfer
+[Sinatra]: http://www.sinatrarb.com/
+[Rails]: http://rubyonrails.org/
+[Sqlite3]: http://www.sqlite.org/
+[XHTML]: http://www.w3schools.com/Xhtml/
+[CSS]: http://www.w3.org/Style/CSS/
+[Ruby]: http://www.ruby-lang.org/en/
+[Git]: http://git-scm.com/
+[Less]: http://lesscss.org/
+[HAML]: http://haml-lang.com/
+[Github]: http://github.com/creationix/numbercatcher/
 
 ## DELIVERABLES, SCHEDULE (RC)
 
