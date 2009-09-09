@@ -57,10 +57,11 @@ We'll be using [Sqlite3][] for the persistent data store.  This is a simple to u
 
 Our source control will be done through [Git][].  [Git][] is a open source distributed version control system.  It's very popular in the [Ruby][] community and they even offer a free place to host your repositories.  We will host ours there at [Github][].  This allows for visual browsing of the code and documents.  Team members who are not yet comfortable with git can use the web interface to modify and commit changes directly.
 
-The front-end will be served as pre-rendered html so that the google appliance can easily search and index it.  We will use [Less][] for [CSS][] and [HAML][] for the [XHTML][] generation.  We will probably use prototype for the [JavaScript][] framework.  The [XHTML][] generated will be semantically meaningful to give the most power to the Google engine.  All styling will be done through the [CSS][].
+The front-end will be served as pre-rendered html so that the google appliance can easily search and index it.  We will use [Less][] for [CSS][] and [HAML][] for the [XHTML][] generation.  We will probably use [jQuery][] for the [JavaScript][] framework.  The [XHTML][] generated will be semantically meaningful to give the most power to the Google engine.  All styling will be done through the [CSS][].
 
 This closely models a traditional [Ruby][]/[Linux][] stack used in production websites throughout the world.  This benefits both Techtronix
 
+[jQuery]: http://jquery.com/
 [JavaScript]: http://en.wikipedia.org/wiki/JavaScript
 [Linode]: http://www.linode.com/
 [Ubuntu]: http://www.ubuntu.com/
