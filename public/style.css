@@ -1,0 +1,13 @@
+.rounded_corners {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  border: 1px solid #333333;
+}
+input[type=text], textarea {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  border: 1px solid #333333;
+  font-weight: bold;
+}
