@@ -13,3 +13,7 @@ get '/' do
   @posts = Post.all
   haml :index
 end
+
+class Login < Sinatra::Base
+  
+  get '/login'
