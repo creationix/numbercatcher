@@ -1,7 +1,9 @@
-PAGES = {
-  "login" => "/",
-  "home" => "/home"
-}
+
+Given /^A user exists with username '(.*)' and password '(.*)'$/ do |username, password|
+  user = User.first(:username => username) || User.new(:username => username)
+  user.password = password
+  user.save
+end
 
 Given /^I visit the (.*) page$/ do |page_name|
   visit PAGES[page_name]

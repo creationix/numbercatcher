@@ -14,15 +14,24 @@ DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db.sqlite3")
 class User
   include DataMapper::Resource
   property :id,            Serial
-  property :email,         String
+  property :username,      String
   property :name,          String
   property :password_hash, String,  :length => 32, :accessor => :private
   property :is_admin?,     Boolean, :default  => false
-
-  def password= (pass)
-    # Not super high security, but a start.
-    self.password_hash = Digest::MD5.hexdigest("Number#{pass}Catcher")
+  
+  def self.authenticate(username, password)
+    first(:username => username, :password_hash => get_hash(password))
   end
+
+  def self.get_hash(pass)
+    Digest::MD5.hexdigest("Number#{pass}Catcher")
+  end
+
+  def password=(pass)
+    # Not super high security, but a start.
+    self.password_hash = self.class.get_hash(pass)
+  end
+  
   
   has n, :reservations
 end
@@ -77,7 +86,7 @@ class Log
 end
 
 # Create the database with the following line
-DataMapper.auto_migrate!
+# DataMapper.auto_migrate!
 
 __END__
 # Example usage from the command line

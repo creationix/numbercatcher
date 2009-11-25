@@ -4,4 +4,8 @@
     %link{ :href => "/style.css", :media => "all", :rel => "stylesheet", :type => "text/css" }
   %body
     #container
+      - if notice = flash[:notice]
+        .flash-notice&= notice
+      - if error = flash[:error]
+        .flash-error&= error
       = yield
