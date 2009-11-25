@@ -1,0 +1,38 @@
+<mockup version="1.0" skin="sketch" measuredW="985" measuredH="535">
+  <controls>
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="259" y="93" w="-1" h="-1" measuredW="180" measuredH="23" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Welcome%20Tim%20Caswell%2C%20Help</text>
+        <hrefs>UserDetailScreen.bmml%2CIndexScreen.bmml</hrefs>
+      </controlProperties>
+    </control>
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::Paragraph" x="259" y="136" w="680" h="368" measuredW="200" measuredH="140" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Lorem%20Ipsum%20is%20simply%20dummy%20text%20of%20the%20printing%20and%20typesetting%20industry.%20Lorem%20Ipsum%20has%20been%20the%20industry%27s%20standard%20dummy%20text%20ever%20since%20the%201500s%2C%20when%20an%20unknown%20printer%20took%20a%20galley%20of%20type%20and%20scrambled%20it%20to%20make%20a%20type%20specimen%20book.%20It%20has%20survived%20not%20only%20five%20centuries%2C%20but%20also%20the%20leap%20into%20electronic%20typesetting%2C%20remaining%20essentially%20unchanged.%20It%20was%20popularised%20in%20the%201960s%20with%20the%20release%20of%20Letraset%20sheets%20containing%20Lorem%20Ipsum%20passages%2C%20and%20more%20recently%20with%20desktop%20publishing%20software%20like%20Aldus%20PageMaker%20including%20versions%20of%20Lorem%20Ipsum.%0A%20%0AIt%20is%20a%20long%20established%20fact%20that%20a%20reader%20will%20be%20distracted%20by%20the%20readable%20content%20of%20a%20page%20when%20looking%20at%20its%20layout.%20The%20point%20of%20using%20Lorem%20Ipsum%20is%20that%20it%20has%20a%20more-or-less%20normal%20distribution%20of%20letters%2C%20as%20opposed%20to%20using%20%27Content%20here%2C%20content%20here%27%2C%20making%20it%20look%20like%20readable%20English.%20Many%20desktop%20publishing%20packages%20and%20web%20page%20editors%20now%20use%20Lorem%20Ipsum%20as%20their%20default%20model%20text%2C%20and%20a%20search%20for%20%27lorem%20ipsum%27%20will%20uncover%20many%20web%20sites%20still%20in%20their%20infancy.%20Various%20versions%20have%20evolved%20over%20the%20years%2C%20sometimes%20by%20accident%2C%20sometimes%20on%20purpose%20%28injected%20humour%20and%20the%20like%29.%0A%20%0A%20%0AContrary%20to%20popular%20belief%2C%20Lorem%20Ipsum%20is%20not%20simply%20random%20text.%20It%20has%20roots%20in%20a%20piece%20of%20classical%20Latin%20literature%20from%2045%20BC%2C%20making%20it%20over%202000%20years%20old.%20Richard%20McClintock%2C%20a%20Latin%20professor%20at%20Hampden-Sydney%20College%20in%20Virginia%2C%20looked%20up%20one%20of%20the%20more%20obscure%20Latin%20words%2C%20consectetur%2C%20from%20a%20Lorem%20Ipsum%20passage%2C%20and%20going%20through%20the%20cites%20of%20the%20word%20in%20classical%20literature%2C%20discovered%20the%20undoubtable%20source.%20Lorem%20Ipsum%20comes%20from%20sections%201.10.32%20and%201.10.33%20of%20%22de%20Finibus%20Bonorum%20et%20Malorum%22%20%28The%20Extremes%20of%20Good%20and%20Evil%29%20by%20Cicero%2C%20written%20in%2045%20BC.%20This%20book%20is%20a%20treatise%20on%20the%20theory%20of%20ethics%2C%20very%20popular%20during%20the%20Renaissance.%20The%20first%20line%20of%20Lorem%20Ipsum%2C%20%22Lorem%20ipsum%20dolor%20sit%20amet..%22%2C%20comes%20from%20a%20line%20in%20section%201.10.32.</text>
+      </controlProperties>
+    </control>
+    <control controlID="21" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="241" y="12" w="734" h="513" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Help%20-%20Critical%20Numbers%0Ahttp%3A//criticalnumbers/docs</text>
+        <verticalScrollbar>true</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="23" controlTypeID="com.balsamiq.mockups::Link" x="903" y="92" w="-1" h="-1" measuredW="41" measuredH="23" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>logout</text>
+        <href>LoginScreen.bmml</href>
+      </controlProperties>
+    </control>
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::HRule" x="241" y="122" w="716" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="-1"/>
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::CallOut" x="103" y="51" w="176" h="78" measuredW="419" measuredH="40" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Show%20Login%20as%20the%20base%20breadcrumb%20is%20user%20is%20not%20authenticated.</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::CallOut" x="730" y="59" w="158" h="63" measuredW="276" measuredH="40" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Only%20show%20logout%20if%20the%20user%20is%20logged%20in.</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

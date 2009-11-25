@@ -1,0 +1,38 @@
+<mockup version="1.0" skin="sketch" measuredW="761" measuredH="473">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::TitleWindow" x="301" y="63" w="-1" h="-1" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <topheight>26</topheight>
+        <text>Event%20History</text>
+        <bottomheight>50</bottomheight>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::DataGrid" x="316" y="131" w="420" h="264" measuredW="356" measuredH="176" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Date%2C%20Action%2C%20Notes%0A1982-03-28%2C%20Birth%2C%20Farmington%5C%2C%20NM%0A2000-05-13%2C%20High%20School%20Graduation%2C%20Texarkana%5C%2C%20TX%0A2004-08-14%2C%20Marriage%2C%20Dallas%5C%2C%20TX%0A2010-05-15%2C%20Undergrad%20Graduation%2C%20Richardson%5C%2C%20TX%0A2011-12-19%2C%20Graduate%20Graduation%2C%20Richardson%5C%2C%20TX</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Button" x="673" y="427" w="63" h="-1" measuredW="53" measuredH="28" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Done</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::IconLabel" x="602" y="99" w="-1" h="-1" measuredW="134" measuredH="24" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Download%20as%20CSV</text>
+        <icon>TableIcon%7Csmall</icon>
+        <labelPosition>right</labelPosition>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="316" y="99" w="-1" h="-1" measuredW="145" measuredH="23" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>History%20for%20Tim%20Caswell</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::CallOut" x="419" y="303" w="213" h="84" measuredW="545" measuredH="45" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>The%20actual%20contents%20of%20this%20table%20will%20be%20determined%20by%20the%20type%20of%20log%20it%27s%20displaying</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

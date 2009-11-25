@@ -1,0 +1,76 @@
+<mockup version="1.0" skin="sketch" measuredW="926" measuredH="491">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="289" y="26" w="603" h="455" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Login%20-%20Critical%20Numbers%0Ahttp%3A//criticalnumbers/</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::TextInput" x="539" y="270" w="183" h="-1" measuredW="127" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>tim@creationix.com</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="457" y="272" w="-1" h="-1" measuredW="68" measuredH="23" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Username%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::TextInput" x="539" y="299" w="182" h="-1" measuredW="73" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>**********</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="457" y="301" w="-1" h="-1" measuredW="64" measuredH="23" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Password%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::TitleWindow" x="442" y="229" w="295" h="153" measuredW="450" measuredH="400" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <topheight>26</topheight>
+        <text>Welcome%2C%20Please%20Login</text>
+        <bottomheight>43</bottomheight>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="640" y="349" w="82" h="-1" measuredW="54" measuredH="28" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Login</text>
+        <href>IndexScreen.bmml</href>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::CallOut" x="737" y="330" w="179" h="66" measuredW="307" measuredH="39" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Login%20will%20call%20%22login%22%20on%20the%20%22Login%22%20controller</text>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::TextArea" x="442" y="195" w="295" h="34" measuredW="200" measuredH="140" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Invalid%20Credentials%2C%20please%20try%20again.</text>
+        <backgroundAlpha>0.75</backgroundAlpha>
+        <color>16737894</color>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::CallOut" x="736" y="195" w="150" h="106" measuredW="437" measuredH="40" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>This%20red%20box%20will%20appear%20if%20the%20user%20enters%20invalid%20login%20information.</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Link" x="833" y="423" w="-1" h="-1" measuredW="31" measuredH="23" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Help</text>
+        <href>HelpScreen.bmml</href>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Title" x="304" y="120" w="573" h="-1" measuredW="516" measuredH="56" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Critical%20Number%20Reservation</text>
+        <align>center</align>
+      </controlProperties>
+    </control>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::Label" x="304" y="422" w="514" h="23" measuredW="345" measuredH="23" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%28c%292009%20Techtronix.%20%20Some%20other%20legal%20text%20may%20go%20here.</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
