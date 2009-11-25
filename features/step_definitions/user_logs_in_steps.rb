@@ -1,5 +1,10 @@
-Given /^I visit the calculator page$/ do
-  visit '/add'
+PAGES = {
+  "login" => "/",
+  "home" => "/home"
+}
+
+Given /^I visit the (.*) page$/ do |page_name|
+  visit PAGES[page_name]
 end
 
 Given /^I fill in '(.*)' for '(.*)'$/ do |value, field|
@@ -12,4 +17,8 @@ end
 
 Then /^I should see '(.*)'$/ do |text|
   response_body.should contain(/#{text}/m)
+end
+
+Then /^I should be on the (.*) page$/ do |page_name|
+  # TODO: look up docs for validating current page
 end
