@@ -4,12 +4,25 @@ Ask about activity tracking
 Ask about set range history
 Ask about separate username, name, and email or all in one
 Ask about certain groups not being visible to certain users
+Ask about "Forgot your password" feature
 
-TODO: add in a new set button for admins
-[      ][type] (button)
-TODO: add in user management gui
- login page forgot password link
- user administration page
+
+
+
+
+Notes from first presentation:
+
+ - They like traditional OO concepts with nouns for classes, proper inheritance usage, polymorphism.
+ - Interested in "team" concept. (Currently they're moving to agile methods and so it's in flux)
+ - Interested in LDAP plugin.  A good design should make this easy.
+ 
+
+
+
+
+
+
+
 
 Models - These are the main tables in the database and the model classes.  There may be more support tables for the many-to-many relationships, but this should be all the entities in the system. We'll want an ERD diagram of all the database tables as well as UML diagrams for all the models.
 
@@ -25,7 +38,7 @@ Models - These are the main tables in the database and the model classes.  There
     name
     type
   
-  range - A range for a NumberSet
+  sequence - A range for a NumberSet
     number_set_id - Foreign key to NumberSet
     min
     max
