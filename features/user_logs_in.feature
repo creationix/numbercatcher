@@ -1,5 +1,5 @@
 Feature: User authentication
-  In order enter the system
+  In order to restrict access to the system
   As a user
   I want to gain access only when I enter proper credentials
   
