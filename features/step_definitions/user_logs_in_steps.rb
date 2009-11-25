@@ -20,5 +20,5 @@ Then /^I should see '(.*)'$/ do |text|
 end
 
 Then /^I should be on the (.*) page$/ do |page_name|
-  # TODO: look up docs for validating current page
+  current_url.should == PAGES[page_name]
 end
