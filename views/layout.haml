@@ -9,7 +9,7 @@
       - if @links
         %p.nav-links
           - @links.each do |name, label|
-            %a{ :href => PAGES[name] }
+            %a{ :href => PAGES[name], :class => (PAGES[name] == request.path_info) ? "current" : nil }
               &= label
             - unless name == :help
               |

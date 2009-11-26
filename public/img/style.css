@@ -21,3 +21,4 @@ body {
   background: #022543 url(logo.jpg) left no-repeat;
 }
 #content { margin: 20px; }
+#content .nav-links a.current { font-weight: bold; }
