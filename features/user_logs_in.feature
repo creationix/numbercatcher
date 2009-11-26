@@ -10,7 +10,7 @@ Feature: User authentication
     And I fill in 'password' for 'password'
     When I press 'Login'
     Then I should be on the home page
-    And I should see 'Login successful'
+    And I should see a notice saying 'Login successful'
   
   Scenario: User enters wrong credentials
     Given I visit the login page
@@ -19,7 +19,7 @@ Feature: User authentication
     And I fill in 'wrong_password' for 'password'
     When I press 'Login'
     Then I should be on the login page
-    And I should see 'Incorrect credentials.  Please try again'
+    And I should see an error saying 'Incorrect credentials.  Please try again'
   
   Scenario: Authenticated user visits login page
     Given I'm an authenticated user
@@ -30,7 +30,7 @@ Feature: User authentication
     Given I'm not an authenticated user
     When I visit the home page
     Then I should be on the login page
-    And I should see 'Please login first.'
+    And I should see an error saying 'Please login first.'
   
   
 

@@ -42,3 +42,10 @@ Then /^I should be redirected to the (.*) page$/ do |page_name|
   redirected_to PAGES[page_name]
 end
 
+Then /^I should see an? (.*) saying '(.*)'$/ do |type, message|
+  hs = have_selector(".flash-#{type}") do |div|
+    div.inner_text.should == message
+  end
+  hs.matches?(response_body).should == true
+end
+
