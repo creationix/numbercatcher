@@ -21,11 +21,23 @@ body {
   background: #022543 url(logo.jpg) left no-repeat;
 }
 
+#nav-links {
+  background-color: #8bb6dd;
+  margin:0;
+  padding: 10px 15px;
+  border-top: 1px solid #4c62b6;
+  border-bottom: 1px solid #4c62b6;
+  a:link, a:active, a:visited, a {
+    color: #2f47d3;
+  }
+  a:hover {
+    color: #304876;
+  }
+  a.current {
+    font-weight: bold;
+  }
+}
+
 #content {
   margin: 20px;
-  .nav-links {
-    a.current {
-      font-weight: bold;
-    }
-  }
 }

@@ -5,14 +5,14 @@
     %link{ :href => "/img/style.css", :media => "all", :rel => "stylesheet", :type => "text/css" }
   %body
     #header
+    - if @links
+      %p#nav-links
+        - @links.each do |name, label|
+          %a{ :href => PAGES[name], :class => (PAGES[name] == request.path_info) ? "current" : nil }
+            &= label
+          - unless name == :help
+            |
     #content
-      - if @links
-        %p.nav-links
-          - @links.each do |name, label|
-            %a{ :href => PAGES[name], :class => (PAGES[name] == request.path_info) ? "current" : nil }
-              &= label
-            - unless name == :help
-              |
       - if notice = flash[:notice]
         .ui-state-highlight.ui-corner-all{ :style => "margin: 20px 0; padding: 0 .7em;" }
           %p

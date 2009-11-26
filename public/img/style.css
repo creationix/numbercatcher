@@ -20,5 +20,17 @@ body {
   height: 61px;
   background: #022543 url(logo.jpg) left no-repeat;
 }
+#nav-links {
+  background-color: #8bb6dd;
+  margin: 0;
+  padding: 10px 15px;
+  border-top: 1px solid #4c62b6;
+  border-bottom: 1px solid #4c62b6;
+}
+#nav-links a:link { color: #2f47d3; }
+#nav-links a:active { color: #2f47d3; }
+#nav-links a:visited { color: #2f47d3; }
+#nav-links a { color: #2f47d3; }
+#nav-links a:hover { color: #304876; }
+#nav-links a.current { font-weight: bold; }
 #content { margin: 20px; }
-#content .nav-links a.current { font-weight: bold; }
