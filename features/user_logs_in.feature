@@ -21,6 +21,16 @@ Feature: User authentication
     Then I should be on the login page
     And I should see 'Incorrect credentials.  Please try again'
   
+  Scenario: Authenticated user visits login page
+    Given I'm an authenticated user
+    When I visit the login page
+    Then I should be on the home page
+    
+  Scenario: Unauthenticated user visits internal page
+    Given I'm not an authenticated user
+    When I visit the home page
+    Then I should be on the login page
+    And I should see 'Please login first.'
   
   
 
