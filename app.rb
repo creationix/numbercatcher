@@ -13,6 +13,13 @@ PAGES = {
   "home" => "/home"
 }
  
+before do
+  @user = User.get(session[:user_id])
+  unless @user || request.path_info == PAGES['login']
+    flash[:error] = 'Please login first.'
+    redirect PAGES["login"]
+  end
+end
 
 get PAGES["login"] do
   redirect PAGES["home"] if session[:user_id]
@@ -21,9 +28,9 @@ end
 
 post PAGES["login"] do
 
-  user = User.authenticate(params[:username], params[:password])
-  session[:user_id] = user ? user.id : nil
-  if user
+  @user = User.authenticate(params[:username], params[:password])
+  session[:user_id] = @user ? @user.id : nil
+  if @user
     flash[:notice] = "Login successful"
     redirect PAGES["home"]
   else
@@ -33,10 +40,6 @@ post PAGES["login"] do
 end
 
 get PAGES['home'] do
-  unless session[:user_id]
-    flash[:error] = 'Please login first.'
-    redirect PAGES["login"]
-  end
   haml :home
 end
 
