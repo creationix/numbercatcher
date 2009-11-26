@@ -6,13 +6,20 @@
   %body
     #header
     #content
+      - if @links
+        %p.nav-links
+          - @links.each do |name, label|
+            %a{ :href => PAGES[name] }
+              &= label
+            - unless name == :help
+              |
       - if notice = flash[:notice]
-        .ui-state-highlight.ui-corner-all{ :style => "margin-top: 20px; padding: 0 .7em;" }
+        .ui-state-highlight.ui-corner-all{ :style => "margin: 20px 0; padding: 0 .7em;" }
           %p
             %span.ui-icon.ui-icon-info{ :style => "float: left; margin-right: .3em;" }
             %span.flash-notice&= notice
       - if error = flash[:error]
-        .ui-state-error.ui-corner-all{ :style => "margin-top: 20px; padding: 0 .7em;" }
+        .ui-state-error.ui-corner-all{ :style => "margin: 20px 0; padding: 0 .7em;" }
           %p
             %span.ui-icon.ui-icon-alert{ :style => "float: left; margin-right: .3em;" }
             %span.flash-error&= error
