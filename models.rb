@@ -85,8 +85,6 @@ class Log
 
 end
 
-# Create the database with the following line
-# DataMapper.auto_migrate!
 
 __END__
 # Example usage from the command line

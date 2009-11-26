@@ -13,6 +13,11 @@ PAGES = {
   "home" => "/home"
 }
  
+configure :test do
+  DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db_test.sqlite3")
+  DataMapper.auto_migrate!
+end
+
 before do
   @user = User.get(session[:user_id])
   unless @user || request.path_info == PAGES['login']
