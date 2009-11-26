@@ -9,6 +9,7 @@ use Rack::Flash
 
 PAGES = {
   "login" => "/",
+  "logout" => "/logout",
   "home" => "/home"
 }
  
@@ -37,4 +38,10 @@ get PAGES['home'] do
     redirect PAGES["login"]
   end
   haml :home
+end
+
+get PAGES['logout'] do
+  session[:user_id] = nil
+  flash[:notice] = 'You have logged out successfully.'
+  redirect PAGES["login"]
 end
