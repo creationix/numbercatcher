@@ -32,6 +32,11 @@ Feature: User authentication
     Then I should be on the login page
     And I should see an error saying 'Please login first.'
 
+  Scenario: Unauthenticated user visits help page
+    Given I'm not an authenticated user
+    When I visit the help page
+    Then I should be on the help page
+
   Scenario: User logs out
     Given I'm an authenticated user
     When I visit the logout page

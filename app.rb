@@ -23,23 +23,29 @@ configure :test do
 end
 
 before do
+  content_type "text/html", :charset => 'utf-8'
+  
   @user = User.get(session[:user_id])
-  unless @user || request.path_info == PAGES[:login]
+  unless @user || [PAGES[:login], PAGES[:help]].include?(request.path_info)
     flash[:error] = 'Please login first.'
     redirect PAGES[:login]
   end
   if request.path_info == PAGES[:login]
     @links = nil
-  else
+  elsif @user
     @links = [
       [:home, "My Profile"],
       [:sets, "Number Sets"],
       [:users, "User Administration"],
-      [:logout, "Logout"],
-      [:help, "Help"]
+      [:logout, "Logout"]
+    ]
+  else
+    @links = [
+      [:login, "Login"]
     ]
   end
 end
+
 
 get PAGES[:login] do
   redirect PAGES[:home] if session[:user_id]
@@ -61,6 +67,10 @@ end
 
 get PAGES[:home] do
   haml :home
+end
+
+get PAGES[:help] do
+  haml :help
 end
 
 get PAGES[:logout] do

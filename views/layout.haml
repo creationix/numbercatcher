@@ -10,17 +10,22 @@
         - @links.each do |name, label|
           %a{ :href => PAGES[name], :class => (PAGES[name] == request.path_info) ? "current" : nil }
             &= label
-          - unless name == :help
+          - unless name == :logout || name == :login
             |
     #content
       - if notice = flash[:notice]
-        .ui-state-highlight.ui-corner-all{ :style => "margin: 20px 0; padding: 0 .7em;" }
+        .ui-state-highlight.ui-corner-all{ :style => "margin-bottom: 20px; padding: 0 .7em;" }
           %p
             %span.ui-icon.ui-icon-info{ :style => "float: left; margin-right: .3em;" }
             %span.flash-notice&= notice
       - if error = flash[:error]
-        .ui-state-error.ui-corner-all{ :style => "margin: 20px 0; padding: 0 .7em;" }
+        .ui-state-error.ui-corner-all{ :style => "margin-bottom: 20px; padding: 0 .7em;" }
           %p
             %span.ui-icon.ui-icon-alert{ :style => "float: left; margin-right: .3em;" }
             %span.flash-error&= error
       = yield
+    #footer
+      © 2009 Tektronix. All rights reserved.
+      %a{ :href => PAGES[:help], :class => (PAGES[:help] == request.path_info) ? "current" : nil  }
+        View Documentation
+      
