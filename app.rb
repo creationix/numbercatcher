@@ -4,7 +4,7 @@ require 'models'
 require 'haml'
 require 'rack-flash'
 
-use Rack::Static, :urls => ["/theme"], :root => "public"
+use Rack::Static, :urls => ["/theme", "/img"], :root => "public"
 use Rack::Session::Cookie, :secret => "3458f7dsoiay3h45hjvfd7862873jfwghf2346"
 use Rack::Flash
 

@@ -2,9 +2,10 @@
   %head
     %title Number Catcher
     %link{ :href => "/theme/jquery-ui-1.7.2.custom.css", :media => "all", :rel => "stylesheet", :type => "text/css" }
-    %link{ :href => "/style.css", :media => "all", :rel => "stylesheet", :type => "text/css" }
+    %link{ :href => "/img/style.css", :media => "all", :rel => "stylesheet", :type => "text/css" }
   %body
-    #container
+    #header
+    #content
       - if notice = flash[:notice]
         .ui-state-highlight.ui-corner-all{ :style => "margin-top: 20px; padding: 0 .7em;" }
           %p
