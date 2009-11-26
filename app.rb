@@ -68,3 +68,7 @@ get PAGES[:logout] do
   flash[:notice] = 'You have logged out successfully.'
   redirect PAGES[:login]
 end
+
+not_found do
+  haml :not_found
+end
