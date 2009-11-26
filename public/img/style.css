@@ -45,7 +45,7 @@ body {
   color: #dddddd;
 }
 #footer a { padding: 0 10px; }
-#footer a .current { font-weight: bold; }
+#footer a.current { font-weight: bold; }
 #footer a:link { color: #ddeeff; }
 #footer a:active { color: #ddeeff; }
 #footer a:visited { color: #ddeeff; }
