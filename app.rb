@@ -48,7 +48,7 @@ end
 
 
 get PAGES[:login] do
-  redirect PAGES[:home] if session[:user_id]
+  redirect PAGES[:home] if @user
   haml :login
 end
 
