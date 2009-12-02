@@ -51,3 +51,20 @@ body {
 #footer a:visited { color: #ddeeff; }
 #footer a { color: #ddeeff; }
 #footer a:hover { color: #5078f6; }
+table.data_table {
+  width: 100%;
+  border: 1px solid #888888;
+  border-collapse: collapse;
+}
+table.data_table td {
+  text-align: left;
+  padding: 3px 5px;
+}
+table.data_table th {
+  text-align: left;
+  padding: 3px 5px;
+}
+table.data_table thead { background: #aaaaaa; }
+table.data_table tbody tr.even { background: #eef2ff; }
+table.data_table tbody tr.odd:hover { background: #eeeeee; }
+table.data_table tbody tr.even:hover { background: #dde2ee; }

@@ -1,3 +1,4 @@
+
 .rounded_corners {
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
@@ -59,6 +60,33 @@ body {
   }
   a:hover {
     color: #5078f6;
+  }
+  
+}
+
+table.data_table {
+  width: 100%;
+  border: 1px solid #888;
+  border-collapse: collapse;
+  td, th {
+    text-align: left;
+    padding: 3px 5px;
+  }
+  thead {
+    background: #aaa;
+  }
+  tbody {
+    tr.odd {
+    }
+    tr.even {
+      background: #eef2ff;
+    }
+    tr.odd:hover {
+      background: #eee;
+    }
+    tr.even:hover {
+      background: #dde2ee;
+    }
   }
   
 }
