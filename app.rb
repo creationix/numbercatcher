@@ -79,6 +79,25 @@ get PAGES[:logout] do
   redirect PAGES[:login]
 end
 
+get PAGES[:users] do
+  @users = User.all
+  haml :users
+end
+
+post PAGES[:users] do
+  user = User.new(params[:new_user])
+  password = "changeme"
+  user.password = password
+  user.save
+  if user.valid?
+    flash[:notice] = "New user created with password #{password.inspect}"
+  else
+    errors = user.errors.full_messages;
+    flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in creating new user: #{errors.join(', ')}"
+  end
+  redirect PAGES[:users]
+end
+
 not_found do
   haml :not_found
 end
