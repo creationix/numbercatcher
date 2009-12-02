@@ -1,5 +1,5 @@
 
-Given /^A user exists with username '(.*)' and password '(.*)'$/ do |username, password|
+Given /^a user exists with username '(.*)' and password '(.*)'$/ do |username, password|
   user = User.first(:username => username) || User.new(:username => username)
   user.password = password
   user.save

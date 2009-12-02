@@ -5,7 +5,7 @@ Feature: User authentication
 
   Scenario: User logs in
     Given I visit the login page
-    And A user exists with username 'admin' and password 'password'
+    And a user exists with username 'admin' and password 'password'
     And I fill in 'admin' for 'username'
     And I fill in 'password' for 'password'
     When I press 'Login'
@@ -14,7 +14,7 @@ Feature: User authentication
 
   Scenario: User enters wrong credentials
     Given I visit the login page
-    And A user exists with username 'admin' and password 'password'
+    And a user exists with username 'admin' and password 'password'
     And I fill in 'admin' for 'username'
     And I fill in 'wrong_password' for 'password'
     When I press 'Login'
