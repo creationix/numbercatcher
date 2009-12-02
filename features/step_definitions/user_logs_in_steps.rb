@@ -10,11 +10,15 @@ Given /^I visit the (.*) page$/ do |page_name|
 end
 
 Given /^I fill in '(.*)' for '(.*)'$/ do |value, field|
-  fill_in(field, :with => value)
+  fill_in field, :with => value
+end
+
+Given /^I select '(.*)' for '(.*)'$/ do |value, field|
+  select value, :from => field
 end
 
 When /^I press '(.*)'$/ do |name|
-  click_button(name)
+  click_button name
 end
 
 Then /^I should see '(.*)'$/ do |text|
@@ -25,12 +29,13 @@ Then /^I should be on the (.*) page$/ do |page_name|
   current_url.should == PAGES[page_name.to_sym]
 end
 
-Given /^I'm an authenticated user$/ do
-  user = User.first(:username => "test") || User.new(:username => "test")
+Given /^I'm an authenticated (user|administrator)$/ do |role|
+  username = "test#{role}"
+  user = User.first(:username => username) || User.new(:username => username)
   user.password = "test"
   user.save
   visit PAGES[:login]
-  fill_in('username', :with => 'test')
+  fill_in('username', :with => username)
   fill_in('password', :with => 'test')
   click_button('Login')
 end
