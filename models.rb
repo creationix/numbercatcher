@@ -2,6 +2,7 @@
 require 'datamapper'
 require 'dm-timestamps'
 require 'dm-types'
+require 'dm-validations'
 require 'digest/md5'
 
 # Set up our app to use a local file as a sqlit3 database
@@ -14,10 +15,13 @@ DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db.sqlite3")
 class User
   include DataMapper::Resource
   property :id,            Serial
-  property :username,      String
+  property :username,      String, :unique_index => true
   property :name,          String
   property :password_hash, String,  :length => 32, :accessor => :private
   property :is_admin?,     Boolean, :default  => false
+
+  validates_is_unique :username
+  validates_present :username, :name, :password_hash
   
   def self.authenticate(username, password)
     first(:username => username, :password_hash => get_hash(password))
