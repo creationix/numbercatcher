@@ -9,7 +9,7 @@ Feature: User authentication
     And I fill in 'admin' for 'username'
     And I fill in 'password' for 'password'
     When I press 'Login'
-    Then I should be on the home page
+    Then I should be on the /users/1 page
     And I should see a notice saying 'Login successful'
 
   Scenario: User enters wrong credentials
@@ -18,27 +18,27 @@ Feature: User authentication
     And I fill in 'admin' for 'username'
     And I fill in 'wrong_password' for 'password'
     When I press 'Login'
-    Then I should be on the login page
+    Then I should be on the / page
     And I should see an error saying 'Incorrect credentials.  Please try again'
 
   Scenario: Authenticated user visits login page
     Given I'm an authenticated user
     When I visit the login page
-    Then I should be on the home page
+    Then I should be on the /users/2 page
 
   Scenario: Unauthenticated user visits internal page
     Given I'm not an authenticated user
     When I visit the home page
-    Then I should be on the login page
+    Then I should be on the / page
     And I should see an error saying 'Please login first.'
 
   Scenario: Unauthenticated user visits help page
     Given I'm not an authenticated user
     When I visit the help page
-    Then I should be on the help page
+    Then I should be on the /help page
 
   Scenario: User logs out
     Given I'm an authenticated user
     When I visit the logout page
-    Then I should be on the login page
+    Then I should be on the / page
     And I should see a notice saying 'You have logged out successfully.'

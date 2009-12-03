@@ -7,12 +7,9 @@ Given /^a user exists with username '(.*)' and password '(.*)'$/ do |username, p
 end
 
 Given /^I visit the login page$/ do 
-  visit "/sets/1"
+  visit "/"
 end
 
-Given /^I visit the Number Set Details page$/ do 
-  visit "/sets/1"
-end
 
 Given /^'(.*)' number does not belong to the pool$/ do |number|
   pending # express the regexp above with the code you wish you had
@@ -32,12 +29,25 @@ When /^I press '(.*)'$/ do |name|
   click_button name
 end
 
+
+When /^I visit the home page$/ do
+  visit "/users/1"
+end
+
+When /^I visit the help page$/ do
+  visit "/help"
+end
+
+When /^I visit the logout page$/ do
+  visit "/logout"
+end
+
 Then /^I should see '(.*)'$/ do |text|
   response_body.should contain(/#{text}/m)
 end
 
 Then /^I should be on the (.*) page$/ do |page_name|
-  current_url.should == "/#{page_name}"
+  current_url.should == "#{page_name}"
 end
 
 Given /^I'm an authenticated (user|administrator)$/ do |role|
