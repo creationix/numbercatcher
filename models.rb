@@ -42,7 +42,7 @@ end
 
 # This represents a set of numbers.  For example, this could be the list of 
 # available ports on a given machine.
-class Set
+class Numberset
   include DataMapper::Resource
   property :id,   Serial
   property :name, String
@@ -60,7 +60,7 @@ class Sequence
   property :min, Integer
   property :max, Integer
 
-  belongs_to :set
+  belongs_to :numberset
 end
 
 # This is the reservation for a particular number for a particular set for a 
@@ -69,8 +69,9 @@ class Reservation
   include DataMapper::Resource
   property :id,     Serial
   property :number, Integer
+  property :created_at, DateTime 
 
-  belongs_to :set
+  belongs_to :numberset
   belongs_to :user
 end
 
@@ -83,7 +84,7 @@ class Log
   property :note,       String
   property :number,     Integer
   property :created_at, DateTime
-  belongs_to :set
+  belongs_to :numberset
   belongs_to :owner,    :model => "User"
   belongs_to :operator, :model => "User"
 
