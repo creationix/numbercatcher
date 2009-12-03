@@ -156,6 +156,39 @@ delete "*/reservations/:reservation_id" do |redirect, reservation_id|
   redirect redirect
 end
 
+post "#{PAGES[:sets]}/:set_id/reservations" do |set_id|
+  number = params["number"].to_i
+  
+  # Find the next available number
+  if params[:autoreserve]
+    set = Numberset.get(set_id)
+    res = set.reservations
+    seqs = set.sequences
+    for seq in seqs
+      ((seq.min)..(seq.max)).each do |n|
+        if res.none? { |reservation| reservation.number == n }
+          number = n
+          break
+        end
+      end
+    end
+  end
+  
+  reservation = Reservation.new(:number => number)
+  reservation.numberset_id = set_id
+  reservation.user_id = @user.id
+  reservation.save
+  if reservation.valid?
+    flash[:notice] = "New reservation created"
+  else
+    errors = reservation.errors.full_messages;
+    flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in reserving number #{number}: #{errors.join(', ')}"
+  end
+  
+  redirect "#{PAGES[:sets]}/#{set_id}"
+
+end
+
 get PAGES[:sets] do
   @sets = Numberset.all
   haml :sets

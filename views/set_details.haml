@@ -6,7 +6,7 @@
         %th Numbers
         %th Owner
         %th Actions
-    %tbody  
+    %tbody
       - @set_data.each_with_index do |row, index|
         %tr{ :class => (index % 2 == 1) ? 'even' : 'odd' }
           - if row.class == Sequence
@@ -18,5 +18,16 @@
             %td
               - if @user.is_admin || row.user.id == @user.id
                 %form.ui-widget{ :method => "POST", :action => "#{PAGES[:sets]}/#{@set.id}/reservations/#{row.id}" }
-                  %input{ :name => "_method", :value => "delete", :type => "hidden" }
+                  %input{ :name => "_method", :value => "DELETE", :type => "hidden" }
                   %input{ :type => "submit", :value => "Release" }
+
+.ui-widget.ui-corner-all{ :style => "padding-top:20px;clear:both" }
+  %form{ :method => "POST", :action => "#{PAGES[:sets]}/#{@set.id}/reservations" }
+    .grid_1{ :style => "text-align: right" }
+      %label{ :for => "number" } Number:
+    .grid_2
+      %input#number{ :type => "text", :name => "number" }
+    .grid_2
+      %input{ :type => "submit", :value => "Reserve" }
+    .grid_2.prefix_1
+      %input{ :type => "submit", :name => "autoreserve", :value => "Auto Reserve" }

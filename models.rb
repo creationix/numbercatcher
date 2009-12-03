@@ -75,6 +75,7 @@ class Reservation
   property :created_at, DateTime 
 
   validates_with_method :check_ranges
+  validates_is_unique :number, :scope => :numberset_id 
   
   belongs_to :numberset
   belongs_to :user
