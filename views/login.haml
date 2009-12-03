@@ -1,10 +1,14 @@
-%form{ :method => "POST", :action => "/" }
-  Username:
-  %input{ :name => "username", :size => "15", :type => "text" }
-  %br
-  Password:
-  %input{ :name => "password", :size => "15", :type => "password" }
-  %br
-  %div{ :align => "center" }
-    %p
-      %input{ :type => "submit", :value => "Login" }
+.container_12
+  %form{ :method => "POST", :action => "/" }
+    %label.grid_2.prefix_3{ :style=>"text-align:right;", :for => "username" } Username:
+    .grid_2.suffix_5
+      %input#username.ui-state-default.ui-corner-all{ :name => "username", :size => "15", :type => "text" }
+    %label.grid_2.prefix_3{ :style=>"text-align:right;", :for => "password" } Password:
+    .grid_2.suffix_5
+      %input#password.ui-state-default.ui-corner-all{ :name => "password", :size => "15", :type => "password" }
+    .grid_2.prefix_5.suffix_5
+      %input.ui-state-default.ui-corner-all{ :type => "submit", :value => "Login" }
+:javascript
+  $(function () {
+    $('#username').focus();
+  });
