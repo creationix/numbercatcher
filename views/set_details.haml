@@ -25,7 +25,7 @@
                   %input{ :name => "_method", :value => "DELETE", :type => "hidden" }
                   %input.ui-state-default.ui-corner-all{ :type => "submit", :value => "Release" }
 
-.ui-widget.ui-corner-all{ :style => "padding-top:20px;clear:both" }
+.ui-widget.ui-corner-all.clearfix{ :style => "padding-top:20px;clear:both" }
   %form{ :method => "POST", :action => "/sets/#{@set.id}/reservations" }
     .grid_1{ :style => "text-align: right" }
       %label{ :for => "number" } Number:
@@ -35,3 +35,20 @@
       %input.ui-state-default.ui-corner-all{ :type => "submit", :value => "Reserve" }
     .grid_2.prefix_1
       %input.ui-state-default.ui-corner-all{ :type => "submit", :name => "autoreserve", :value => "Auto Reserve" }
+%hr.grid_12
+- if @user.is_admin
+  .ui-widget.ui-corner-all{ :style => "padding-top:20px;clear:both" }
+    %h2.grid_12 Add/Remove ranges.
+    %form{ :method => "POST", :action => "/sets/#{@set.id}/sequences" }
+      .grid_1{ :style => "text-align: right" }
+        %label{ :for => "min" } From:
+      .grid_2.suffix_9
+        %input#min.ui-state-default.ui-corner-all{ :type => "text", :name => "min" }
+      .grid_1{ :style => "text-align: right" }
+        %label{ :for => "max" } To:
+      .grid_2
+        %input#max.ui-state-default.ui-corner-all{ :type => "text", :name => "max" }
+      .grid_2
+        %input.ui-state-default.ui-corner-all{ :type => "submit", :name => "add", :value => "Make Available" }
+      .grid_3
+        %input.ui-state-default.ui-corner-all{ :type => "submit", :name => "remove", :value => "Remove From Pool" }

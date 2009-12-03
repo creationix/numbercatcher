@@ -269,9 +269,60 @@ post "/sets/:set_id/reservations" do |set_id|
 
 end
 
+# Modify the range of available numbers
+post "/sets/:set_id/sequences" do |set_id|
+  unless @user.is_admin
+    flash[:error] = "You are not authorized to modify the range of this set."
+    redirect "/sets/#{set_id}/"
+    next
+  end
+  if params["min"] == ""
+    flash[:error] = "Please enter at least a start to the range."
+    redirect "/sets/#{set_id}/"
+    next
+  end
+  min = params["min"].to_i
+  max = params["max"].to_i
+  if min > max
+    flash[:error] = "The min number should be greater than the max number."
+    redirect "/sets/#{set_id}/"
+    next
+  end
+
+  set = Numberset.get(set_id)
+  
+  if params["remove"]
+    set.sequences.each do |sequence|
+      if min <= sequence.min && max >= sequence.max
+        sequence.destroy!
+      elsif min <= sequence.min && max >= sequence.min
+        sequence.min = max + 1
+        sequence.save
+      elsif min <= sequence.max && max >= sequence.max
+        sequence.max = min - 1
+        sequence.save
+      end
+    end
+  elsif params["add"]
+    added = false
+    set.sequences.each do |sequence|
+      # Merge with any existing ranges that overlap and destroy them
+      if sequence.min <= max && sequence.max >= min
+        max = sequence.max if sequence.max > max
+        min = sequence.min if sequence.min < min
+        sequence.destroy!
+      end
+      s = Sequence.new(:min => min, :max => max, :numberset_id => set_id)
+      s.save
+    end
+  end
+  
+  redirect "/sets/#{set_id}"
+
+end
+
 # 404 fallback
 not_found do
   haml :not_found
 end
-
 
