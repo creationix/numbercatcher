@@ -1,6 +1,7 @@
 
 Given /^a user exists with username '(.*)' and password '(.*)'$/ do |username, password|
   user = User.first(:username => username) || User.new(:username => username)
+  user.name = "Real Name"
   user.password = password
   user.save
 end
@@ -32,6 +33,7 @@ end
 Given /^I'm an authenticated (user|administrator)$/ do |role|
   username = "test#{role}"
   user = User.first(:username => username) || User.new(:username => username)
+  user.name = role
   user.password = "test"
   user.save
   visit PAGES[:login]
