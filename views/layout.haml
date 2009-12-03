@@ -8,6 +8,8 @@
     %link{ :href => "/img/style.css", :media => "all", :rel => "stylesheet", :type => "text/css" }
   %body
     #header
+      - if @user
+        &= "Welcome #{@user.name}"
     - if @links
       %p#nav-links
         - @links.each do |path, label|
