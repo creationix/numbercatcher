@@ -74,8 +74,17 @@ class Reservation
   property :number, Integer
   property :created_at, DateTime 
 
+  validates_with_method :check_ranges
+  
   belongs_to :numberset
   belongs_to :user
+  
+  def check_ranges
+    numberset.sequences.each do |sequence|
+      return true if number >= sequence.min && number <= sequence.max
+    end
+    [ false, "Reservations must be within the specified ranges." ]
+  end
 end
 
 # A log of all reservations and releases is stored in this table so that we
