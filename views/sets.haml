@@ -20,10 +20,10 @@
           %td&= used
           %td&= total == 0 ? "na" : "#{(100 * (total - used) / total)}%"
           %td
-            %a{ :href => "#{PAGES[:sets]}/#{set.id}" } Details
+            %a{ :href => "/sets/#{set.id}" } Details
 - if @user.is_admin      
   .ui-widget.ui-corner-all
-    %form{ :method => "POST", :action => PAGES[:sets] }
+    %form{ :method => "POST", :action => "/sets" }
       .grid_3
         %label{ :for => "name" } Add a new number set
         %br

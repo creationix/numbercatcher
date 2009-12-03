@@ -7,15 +7,6 @@ require 'rack-flash'
 use Rack::Static, :urls => ["/theme", "/img"], :root => "public"
 use Rack::Session::Cookie, :secret => "3458f7dsoiay3h45hjvfd7862873jfwghf2346"
 use Rack::Flash
-
-PAGES = {
-  :login => "/",
-  :logout => "/logout",
-  :home => "/home",
-  :sets => "/sets",
-  :users => "/users",
-  :help => "/help"
-}
  
 configure :test do
   DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/db_test.sqlite3")
@@ -30,68 +21,71 @@ end
 #user.is_admin = true
 #user.save
 
+# Set up session and basic security
 before do
   content_type "text/html", :charset => 'utf-8'
   
   @user = User.get(session[:user_id])
-  unless @user || [PAGES[:login], PAGES[:help]].include?(request.path_info)
+  unless @user || ["/", "/help"].include?(request.path_info)
     flash[:error] = 'Please login first.'
-    redirect PAGES[:login]
+    redirect "/"
   end
-  if request.path_info == PAGES[:login]
+  if request.path_info == "/"
     @links = nil
   elsif @user
     @links = [
-      [:home, "My Profile"],
-      [:sets, "Number Sets"],
-      [:users, "User Administration"],
-      [:logout, "Logout"]
+      ["/users/#{@user.id}", "My Profile"],
+      ["/sets", "Number Sets"],
+      ["/users", "User Administration"],
+      ["/logout", "Logout"]
     ]
   else
     @links = [
-      [:login, "Login"]
+      ["/", "Login"]
     ]
   end
 end
 
-get PAGES[:login] do
-  redirect PAGES[:home] if @user
+# Show login page
+get "/" do
+  redirect "/users/#{@user.id}":home] if @user
   haml :login
 end
 
-post PAGES[:login] do
+# Process login request
+post "/" do
 
   @user = User.authenticate(params[:username], params[:password])
   session[:user_id] = @user ? @user.id : nil
   if @user
     flash[:notice] = "Login successful"
-    redirect PAGES[:home]
+    redirect "/users/#{@user.id}"
   else
     flash[:error] = "Incorrect credentials.  Please try again"
-    redirect PAGES[:login]
+    redirect "/"
   end
 end
 
-get PAGES[:logout] do
+# Process logout request
+get "/logout" do
   session[:user_id] = nil
   flash[:notice] = 'You have logged out successfully.'
-  redirect PAGES[:login]
+  redirect "/"
 end
 
-get PAGES[:home] do
-  haml :home
-end
-
-get PAGES[:help] do
+# Show online documentation
+get "/help" do
   haml :help
 end
 
-get PAGES[:users] do
+# List all users
+get "/users" do
   @users = User.all
   haml :users
 end
 
-post PAGES[:users] do
+# Create a new user
+post "/users" do
   unless @user.is_admin
     flash[:error] = "You are not authorized to add new users"
   else    
@@ -106,15 +100,16 @@ post PAGES[:users] do
       flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in creating new user: #{errors.join(', ')}"
     end
   end    
-   redirect PAGES[:users]
+   redirect "/users"
 end
 
-get "#{PAGES[:users]}/:user_id" do |user_id|
+#
+get "/users/:user_id" do |user_id|
   @user_data = User.get(user_id)
   haml :user_details
 end
 
-put "#{PAGES[:users]}/:user_id" do |user_id|
+put "/users/:user_id" do |user_id|
   user_data = params[:user]
   unless user_id.to_i == @user.id || @user.is_admin
     flash[:error] = "You are not authorized to do this"
@@ -138,7 +133,7 @@ put "#{PAGES[:users]}/:user_id" do |user_id|
       end
     end    
   end     
-  redirect "#{PAGES[:users]}/#{user_id}"  
+  redirect "/users/#{user_id}"  
 end
 
 delete "*/reservations/:reservation_id" do |redirect, reservation_id|
@@ -156,58 +151,25 @@ delete "*/reservations/:reservation_id" do |redirect, reservation_id|
   redirect redirect
 end
 
-post "#{PAGES[:sets]}/:set_id/reservations" do |set_id|
-  number = params["number"].to_i
-  
-  # Find the next available number
-  if params[:autoreserve]
-    set = Numberset.get(set_id)
-    res = set.reservations
-    seqs = set.sequences
-    for seq in seqs
-      ((seq.min)..(seq.max)).each do |n|
-        if res.none? { |reservation| reservation.number == n }
-          number = n
-          break
-        end
-      end
-    end
-  end
-  
-  reservation = Reservation.new(:number => number)
-  reservation.numberset_id = set_id
-  reservation.user_id = @user.id
-  reservation.save
-  if reservation.valid?
-    flash[:notice] = "New reservation created"
-  else
-    errors = reservation.errors.full_messages;
-    flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in reserving number #{number}: #{errors.join(', ')}"
-  end
-  
-  redirect "#{PAGES[:sets]}/#{set_id}"
-
-end
-
-get PAGES[:sets] do
+get "/sets" do
   @sets = Numberset.all
   haml :sets
 end
 
-post PAGES[:sets] do
+post "/sets" do
   set = Numberset.new(params[:new_set])  
   set.save
   if set.valid?
     flash[:notice] = "New set created named #{set.name.inspect}"
-    redirect "#{PAGES[:sets]}/#{set.id}"
+    redirect "/sets/#{set.id}"
   else
     errors = set.errors.full_messages;
     flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in creating new set: #{errors.join(', ')}"
-    redirect PAGES[:sets]
+    redirect "/sets"
   end  
 end
 
-get "#{PAGES[:sets]}/:set_id" do |set_id|
+get "/sets/:set_id" do |set_id|
   @set = Numberset.get(set_id)
   sequences = @set.sequences
   reservations = @set.reservations
@@ -237,6 +199,39 @@ get "#{PAGES[:sets]}/:set_id" do |set_id|
   end
   
   haml :set_details
+end
+
+post "/sets/:set_id/reservations" do |set_id|
+  number = params["number"].to_i
+  
+  # Find the next available number
+  if params[:autoreserve]
+    set = Numberset.get(set_id)
+    res = set.reservations
+    seqs = set.sequences
+    for seq in seqs
+      ((seq.min)..(seq.max)).each do |n|
+        if res.none? { |reservation| reservation.number == n }
+          number = n
+          break
+        end
+      end
+    end
+  end
+  
+  reservation = Reservation.new(:number => number)
+  reservation.numberset_id = set_id
+  reservation.user_id = @user.id
+  reservation.save
+  if reservation.valid?
+    flash[:notice] = "New reservation created"
+  else
+    errors = reservation.errors.full_messages;
+    flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in reserving number #{number}: #{errors.join(', ')}"
+  end
+  
+  redirect "/sets/#{set_id}"
+
 end
 
 not_found do

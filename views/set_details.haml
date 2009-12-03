@@ -5,24 +5,26 @@
       %tr
         %th Numbers
         %th Owner
+        %th Reserved Since
         %th Actions
     %tbody
       - @set_data.each_with_index do |row, index|
         %tr{ :class => (index % 2 == 1) ? 'even' : 'odd' }
           - if row.class == Sequence
-            %td&= "#{row.min}-#{row.max}"
-            %td{ :colspan => 2 } Available Range
+            %td&= row.min == row.max ? row.min : "#{row.min}-#{row.max}"
+            %td{ :colspan => 3 } Available
           - else
             %td&= row.number
             %td&= row.user.name
+            %td&= row.created_at.strftime("%Y-%m-%d")
             %td
               - if @user.is_admin || row.user.id == @user.id
-                %form.ui-widget{ :method => "POST", :action => "#{PAGES[:sets]}/#{@set.id}/reservations/#{row.id}" }
+                %form.ui-widget{ :method => "POST", :action => "/sets/#{@set.id}/reservations/#{row.id}" }
                   %input{ :name => "_method", :value => "DELETE", :type => "hidden" }
                   %input{ :type => "submit", :value => "Release" }
 
 .ui-widget.ui-corner-all{ :style => "padding-top:20px;clear:both" }
-  %form{ :method => "POST", :action => "#{PAGES[:sets]}/#{@set.id}/reservations" }
+  %form{ :method => "POST", :action => "/sets/#{@set.id}/reservations" }
     .grid_1{ :style => "text-align: right" }
       %label{ :for => "number" } Number:
     .grid_2

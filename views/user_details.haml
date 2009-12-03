@@ -1,4 +1,4 @@
-%form.ui-widget{ :method => "POST", :action => "#{PAGES[:users]}/#{@user_data.id}" }
+%form.ui-widget{ :method => "POST", :action => "/users/#{@user_data.id}" }
   %input{ :name => "_method", :value => "PUT", :type => "hidden" }
   .grid_2{ :style => "text-align: right" }
     %label{ :for => "username" } Username:

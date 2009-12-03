@@ -37,7 +37,7 @@ Then /^I should see '(.*)'$/ do |text|
 end
 
 Then /^I should be on the (.*) page$/ do |page_name|
-  current_url.should == PAGES[page_name.to_sym]
+  current_url.should == "/#{page_name}"
 end
 
 Given /^I'm an authenticated (user|administrator)$/ do |role|
@@ -46,7 +46,7 @@ Given /^I'm an authenticated (user|administrator)$/ do |role|
   user.name = role
   user.password = "test"
   user.save
-  visit PAGES[:login]
+  visit "/"
   fill_in('username', :with => username)
   fill_in('password', :with => 'test')
   click_button('Login')
@@ -56,7 +56,7 @@ Given /^I'm not an authenticated user$/ do
 end
 
 Then /^I should be redirected to the (.*) page$/ do |page_name|
-  redirected_to PAGES[page_name.to_sym]
+  redirected_to "/#{page_name}"
 end
 
 Then /^I should see an? (.*) saying '(.*)'$/ do |type, message|

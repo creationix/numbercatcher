@@ -10,8 +10,8 @@
     #header
     - if @links
       %p#nav-links
-        - @links.each do |name, label|
-          %a{ :href => PAGES[name], :class => (PAGES[name] == request.path_info) ? "current" : nil }
+        - @links.each do |path, label|
+          %a{ :href => path, :class => (path == request.path_info) ? "current" : nil }
             &= label
           - unless name == :logout || name == :login
             |
@@ -29,6 +29,6 @@
       .container_12.clearfix= yield
     #footer
       &copy; 2009 Tektronix. All rights reserved.
-      %a{ :href => PAGES[:help], :class => (PAGES[:help] == request.path_info) ? "current" : nil  }
+      %a{ :href => "/help", :class => ("/help" == request.path_info) ? "current" : nil  }
         View Documentation
       

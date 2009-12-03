@@ -16,10 +16,10 @@
           %td&= user.is_admin ? "Administrator" : "Normal User"
           %td
           %td
-            %a{ :href => "#{PAGES[:users]}/#{user.id}" } Details
+            %a{ :href => "/users/#{user.id}" } Details
 - if @user.is_admin			
   .ui-widget.ui-corner-all
-    %form{ :method => "POST", :action => PAGES[:users] }
+    %form{ :method => "POST", :action => "/users" }
       .grid_3
         %label{ :for => "username" } New Username
         %br
