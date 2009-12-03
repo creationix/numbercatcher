@@ -4,7 +4,7 @@ Feature: Delete a user
   I want to delete a user
   
   Scenario: Delete a normal or standard user
-    Given I have logged in as a administrator
-  	And I am on User Administration page	
+    Given I'm an authenticated administrator
+  	And I visit the User Administration page	
   	When I press 'Delete'    
     Then I should see the user disappear on system users list

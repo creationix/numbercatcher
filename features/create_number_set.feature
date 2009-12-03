@@ -4,7 +4,7 @@ Feature: Create new number set
   I want to create a new number set
   
   Scenario: New number set has not existed
-    Given I have logged in as a administrator
+    Given I'm an authenticated administrator
   	And I am on Listing of Number Sets page
   	And new number set 'name' has not existed 
   	And I fill in 'name' for 'new name'
@@ -13,7 +13,7 @@ Feature: Create new number set
     Then I should see a new number set named 'name' on the list of number sets
 
   Scenario: New number set has already existed
-    Given I have logged in as a administrator 
+    Given I'm an authenticated administrator 
   	And I am on Listing of Number Sets page
   	And new number set 'name' has already existed 
   	And I fill in 'name' for 'new name'

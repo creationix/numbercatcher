@@ -4,8 +4,8 @@ Feature: Auto reserve a critical number
   I want to make a request for that critical number
 
   Scenario: Critical number is available
-    Given I have logged in as a user
-    And I am on Number Set Details page
+    Given I'm an authenticated user
+    And I visit the Number Set Details page
     And a critical 'number' is available
     And I fill in 'number' for 'number'
     When I press 'Auto Reserve'    
@@ -13,8 +13,8 @@ Feature: Auto reserve a critical number
     And a new critical number appears on number list
 
   Scenario: Critical number is not available
-    Given I have logged in as a user
-    And I am on Number Set Details page
+    Given I'm an authenticated user
+    And I visit the Number Set Details page
     And a critical 'number' is not available
     And I fill in 'number' for 'number'
     When I press 'Auto Reserve'    

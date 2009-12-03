@@ -4,8 +4,8 @@ Feature: Add range for a number set
   I want to add range for that number set
   
   Scenario: New range does not overlap existing ranges
-    Given I have logged in as a administrator
-    And I am on Number Set Details page
+    Given I'm an authenticated administrator
+    And I visit the Number Set Details page
     And 'from' number does not belong to any existing range 
     And 'to' number does not belong to any existing range 
     And I fill in 'from' for 'from'
@@ -14,8 +14,8 @@ Feature: Add range for a number set
     Then I should see a new range of number on the list
 
   Scenario: New range overlaps existing ranges
-    Given I have logged in as a administrator
-    And I am on Number Set Details page
+    Given I'm an authenticated administrator
+    And I visit the Number Set Details page
     And 'from' number belongs to any existing range 
     And 'to' number does not belong to any existing range 
     And I fill in 'from' for 'from'

@@ -4,7 +4,7 @@ Feature: Delete a number set
   I want to delete a number set
   
   Scenario: Delete a normal or standard user
-    Given I have logged in as a administrator
-  	And I am on Listing of Number page	
+    Given I'm an authenticated administrator
+  	And I visit the Listing of Number page	
   	When I press 'Delete'    
     Then I should see the number set disappear on critical number set list

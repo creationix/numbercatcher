@@ -6,9 +6,19 @@ Given /^a user exists with username '(.*)' and password '(.*)'$/ do |username, p
   user.save
 end
 
-Given /^I visit the (.*) page$/ do |page_name|
-  visit PAGES[page_name.to_sym]
+Given /^I visit the login page$/ do 
+  visit "/sets/1"
 end
+
+Given /^I visit the Number Set Details page$/ do 
+  visit "/sets/1"
+end
+
+Given /^'(.*)' number does not belong to the pool$/ do |number|
+  pending # express the regexp above with the code you wish you had
+end
+
+  
 
 Given /^I fill in '(.*)' for '(.*)'$/ do |value, field|
   fill_in field, :with => value
