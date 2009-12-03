@@ -122,6 +122,38 @@ post PAGES[:sets] do
   end  
 end
 
+get "#{PAGES[:sets]}/:set_id" do |set_id|
+  @set = Numberset.get(set_id)
+  sequences = @set.sequences
+  reservations = @set.reservations
+  
+  # Split the ranges so that they don't overlap the reservations
+  reservations.each do |reservation|
+    for sequence in sequences do
+      if reservation.number == sequence.min
+        sequence.min += 1
+        break
+      elsif reservation.number == sequence.max
+        sequence.max -= 1
+        break
+      elsif reservation.number > sequence.min && reservation.number < sequence.max
+        sequences.delete sequence
+        sequences << Sequence.new(:min => sequence.min, :max => reservation.number - 1)
+        sequences << Sequence.new(:min => reservation.number + 1, :max => sequence.max)
+        break
+      end
+    end
+  end
+  
+  # Merge the two lists and sort
+  @set_data = (sequences + reservations).sort do |a, b|
+    (a.respond_to?(:number) ? a.number : a.min) <=>
+    (b.respond_to?(:number) ? b.number : b.min)
+  end
+  
+  haml :set_details
+end
+
 not_found do
   haml :not_found
 end
