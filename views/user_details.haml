@@ -22,8 +22,8 @@
       %label{ :for => "username" } Type:
     .grid_3
       %select#is_admin.ui-state-default.ui-corner-all{ :name => "user[is_admin]" }
-        %option{ :value => "false", :selected => !@user.is_admin } Normal User
-        %option{ :value => "true" , :selected => @user.is_admin } Administrator
+        %option{ :value => "false", :selected => !@user_data.is_admin } Normal User
+        %option{ :value => "true" , :selected => @user_data.is_admin } Administrator
   - if @user.is_admin || @user_data.id == @user.id
     .grid_2{ :class => "prefix_#{@user.is_admin ? 5 : 10}" }
       %input.ui-state-default.ui-corner-all{ :tabindex => 5, :type => "submit", :value => "Save Changes" }
