@@ -44,7 +44,7 @@
       - @user_data.reservations.each_with_index do |num, index|
         %tr{ :class => (index % 2 == 1) ? 'even' : 'odd' }
           %td&= num.numberset.name
-          %td&= num.number
+          %td&= num.formatted_number
           %td&= num.created_at.strftime("%Y-%m-%d")
           %td
             - if @user.is_admin || @user_data.id == @user.id
