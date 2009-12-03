@@ -46,7 +46,7 @@ class Numberset
   include DataMapper::Resource
   property :id,   Serial
   property :name, String
-  property :type, Enum.new("int", "hex")
+  property :type, Enum.new("int", "ip")
 
   validates_is_unique :name
   validates_present :name, :type
