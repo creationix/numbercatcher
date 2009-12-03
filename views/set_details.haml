@@ -3,6 +3,7 @@
     %thead.ui-widget-header
       %tr
         %th Numbers
+        %th Notes
         %th Owner
         %th Reserved Since
         %th Actions
@@ -14,9 +15,10 @@
         %tr{ :class => (index % 2 == 1) ? 'even' : 'odd' }
           - if row.class == Sequence
             %td&= row.min == row.max ? row.formatted_min : "#{row.formatted_min}-#{row.formatted_max}"
-            %td{ :colspan => 3 } Available
+            %td{ :colspan => 4 } Available
           - else
             %td&= row.formatted_number
+            %td&= row.note
             %td&= row.user.name
             %td&= row.created_at.strftime("%Y-%m-%d")
             %td
@@ -28,9 +30,13 @@
 .ui-widget.ui-corner-all.clearfix{ :style => "padding-top:20px;clear:both" }
   %form{ :method => "POST", :action => "/sets/#{@set.id}/reservations" }
     .grid_1{ :style => "text-align: right" }
-      %label{ :for => "number" } Number:
+      %label{ :for => "number" }&= @set.type == 'ip' ? "IP Addr." : "Number"
     .grid_2
       %input#number.ui-state-default.ui-corner-all{ :type => "text", :name => "number" }
+    .grid_1{ :style => "text-align: right" }
+      %label{ :for => "note" } Notes:
+    .grid_2
+      %input#number.ui-state-default.ui-corner-all{ :type => "text", :name => "note" }
     .grid_2
       %input.ui-state-default.ui-corner-all{ :type => "submit", :value => "Reserve" }
     .grid_2.prefix_1

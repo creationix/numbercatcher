@@ -80,6 +80,7 @@ class Reservation
   include DataMapper::Resource
   property :id,     Serial
   property :number, Integer
+  property :note,   String
   property :created_at, DateTime 
 
   validates_with_method :check_ranges

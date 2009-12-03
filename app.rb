@@ -254,7 +254,7 @@ post "/sets/:set_id/reservations" do |set_id|
     end
   end
   
-  reservation = Reservation.new(:number => number)
+  reservation = Reservation.new(:number => number, :note => params["note"])
   reservation.numberset_id = set_id
   reservation.user_id = @user.id
   reservation.save
