@@ -7,9 +7,9 @@
         %th Reserved Since
         %th Actions
     %tbody
-      - if @set.reservations.length == 0
+      - if @set_data.length == 0
         %tr.odd 
-          %td.empty_notice{ :colspan => 4 } No Reservations found for this set
+          %td.empty_notice{ :colspan => 4 } No Reservations or ranges found for this set
       - @set_data.each_with_index do |row, index|
         %tr{ :class => (index % 2 == 1) ? 'even' : 'odd' }
           - if row.class == Sequence

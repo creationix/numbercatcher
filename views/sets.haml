@@ -21,7 +21,7 @@
           %td
             %form.ui-widget{ :style => "margin:0;", :method => "GET", :action => "/sets/#{set.id}" }
               %input.ui-state-default.ui-corner-all{ :type => "submit", :value => "Details" }
-- if @user.is_admin      
+- if @user.is_admin
   .ui-widget.ui-corner-all{ :style => "padding-top:20px;clear:both" }
     %form{ :method => "POST", :action => "/sets" }
       .grid_3

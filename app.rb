@@ -301,6 +301,12 @@ post "/sets/:set_id/sequences" do |set_id|
       elsif min <= sequence.max && max >= sequence.max
         sequence.max = min - 1
         sequence.save
+      elsif min > sequence.min && max < sequence.max
+        # Split a range in two
+        s = Sequence.new(:min => max + 1, :max => sequence.max, :numberset_id => set_id)
+        s.save
+        sequence.max = min - 1
+        sequence.save
       end
     end
   elsif params["add"]
