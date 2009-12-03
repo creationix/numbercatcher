@@ -36,7 +36,7 @@ before do
     @links = [
       ["/users/#{@user.id}", "My Profile"],
       ["/sets", "Number Sets"],
-      ["/users", "User Administration"],
+      ["/users", @user.is_admin ? "User Administration" : "User Profiles"],
       ["/logout", "Logout"]
     ]
   else
@@ -307,14 +307,14 @@ post "/sets/:set_id/sequences" do |set_id|
     added = false
     set.sequences.each do |sequence|
       # Merge with any existing ranges that overlap and destroy them
-      if sequence.min <= max && sequence.max >= min
+      if sequence.min <= max + 1 && sequence.max >= min - 1
         max = sequence.max if sequence.max > max
         min = sequence.min if sequence.min < min
         sequence.destroy!
       end
-      s = Sequence.new(:min => min, :max => max, :numberset_id => set_id)
-      s.save
     end
+    s = Sequence.new(:min => min, :max => max, :numberset_id => set_id)
+    s.save
   end
   
   redirect "/sets/#{set_id}"
