@@ -84,6 +84,11 @@ get PAGES[:users] do
   haml :users
 end
 
+get "#{PAGES[:users]}/:user_id" do |user_id|
+  @user = User.get(user_id)
+  haml :user_details
+end
+
 post PAGES[:users] do
   user = User.new(params[:new_user])
   password = "changeme"
