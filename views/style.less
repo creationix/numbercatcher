@@ -1,15 +1,4 @@
 
-.rounded_corners {
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  border: 1px solid #333;
-}
-
-input[type=password], input[type=text], textarea {
-  .rounded_corners;
-  font-weight: bold;
-}
 
 body {
   border: 0;
@@ -21,6 +10,12 @@ body {
 #header {
   height: 61px;
   background: #022543 url(logo.jpg) left no-repeat;
+}
+
+.grid_1, .grid_2, .grid_3, .grid_4 {
+  input, select {
+    width: 100%;
+  }
 }
 
 #nav-links {
@@ -73,7 +68,6 @@ table.data_table {
     padding: 3px 5px;
   }
   thead {
-    background: #aaa;
   }
   tbody {
     tr.odd {

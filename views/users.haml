@@ -1,6 +1,6 @@
 %h1 System Users
-%table.data_table
-  %thead
+%table.data_table.ui-widget
+  %thead.ui-widget-header
     %tr
       %th Username
       %th Name
@@ -17,22 +17,22 @@
         %td
           %a{ :href => "#{PAGES[:users]}/#{user.id}" } Details
           %a{ :href => "#{PAGES[:users]}/#{user.id};delete" } Delete
-%hr
-%form{ :method => "POST", :action => PAGES[:users] }
-  .grid_3
-    %label{ :for => "username" } New Username
-    %br
-    %input#username{ :type => "text", :name => "new_user[username]" }
-  .grid_3
-    %label{ :for => "name" } New Real Name
-    %br
-    %input#name{ :type => "text", :name => "new_user[name]" }
-  .grid_2
-    %label{ :for => "is_admin" } Type of user
-    %br
-    %select#is_admin{ :name => "new_user[is_admin]" }
-      %option{ :value => "false" } Normal User
-      %option{ :value => "true" } Administrator
-  .grid_2
-    %br
-    %input{ :type => "submit", :value => "Add New User" }
+.ui-widget.ui-corner-all
+  %form{ :method => "POST", :action => PAGES[:users] }
+    .grid_3
+      %label{ :for => "username" } New Username
+      %br
+      %input#username{ :type => "text", :name => "new_user[username]" }
+    .grid_3
+      %label{ :for => "name" } New Real Name
+      %br
+      %input#name{ :type => "text", :name => "new_user[name]" }
+    .grid_2
+      %label{ :for => "is_admin" } Type of user
+      %br
+      %select#is_admin{ :name => "new_user[is_admin]" }
+        %option{ :value => "false" } Normal User
+        %option{ :value => "true" } Administrator
+    .grid_2
+      %br
+      %input{ :type => "submit", :value => "Add New User" }

@@ -1,16 +1,3 @@
-.rounded_corners {
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  border: 1px solid #333333;
-}
-input[type=password], input[type=text], textarea {
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  border: 1px solid #333333;
-  font-weight: bold;
-}
 body {
   border: 0;
   padding: 0;
@@ -21,6 +8,14 @@ body {
   height: 61px;
   background: #022543 url(logo.jpg) left no-repeat;
 }
+.grid_1 input { width: 100%; }
+.grid_1 select { width: 100%; }
+.grid_2 input { width: 100%; }
+.grid_2 select { width: 100%; }
+.grid_3 input { width: 100%; }
+.grid_3 select { width: 100%; }
+.grid_4 input { width: 100%; }
+.grid_4 select { width: 100%; }
 #nav-links {
   background-color: #8bb6dd;
   margin: 0;
@@ -64,7 +59,6 @@ table.data_table th {
   text-align: left;
   padding: 3px 5px;
 }
-table.data_table thead { background: #aaaaaa; }
 table.data_table tbody tr.even { background: #eef2ff; }
 table.data_table tbody tr.odd:hover { background: #eeeeee; }
 table.data_table tbody tr.even:hover { background: #dde2ee; }
