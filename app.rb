@@ -336,7 +336,7 @@ end
 
 # Patch Fixnum and String to make easy conversion between IP address strings
 # and IP address integers
-class Fixnum
+class Integer
   def to_ip
     address = self
     [24, 16, 8, 0].collect {|b| (address >> b) & 255}.join('.')
