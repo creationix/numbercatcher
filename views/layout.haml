@@ -13,7 +13,7 @@
         - @links.each do |path, label|
           %a{ :href => path, :class => (path == request.path_info) ? "current" : nil }
             &= label
-          - unless name == :logout || name == :login
+          - unless path == "/logout" || path == "/"
             |
     #content
       - if notice = flash[:notice]

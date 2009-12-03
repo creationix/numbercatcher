@@ -48,7 +48,7 @@ end
 
 # Show login page
 get "/" do
-  redirect "/users/#{@user.id}":home] if @user
+  redirect "/users/#{@user.id}" if @user
   haml :login
 end
 
