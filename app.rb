@@ -332,3 +332,21 @@ not_found do
   haml :not_found
 end
 
+# Patch Fixnum and String to make easy conversion between IP address strings
+# and IP address integers
+class Fixnum
+  def to_ip
+    address = self
+    [24, 16, 8, 0].collect {|b| (address >> b) & 255}.join('.')
+  end
+end
+
+class String
+  def from_ip
+    self.split('.').inject(0) {|total,value| (total << 8 ) + value.to_i}
+  end
+end
+
+    
+  
+    
