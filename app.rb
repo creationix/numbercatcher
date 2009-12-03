@@ -13,13 +13,14 @@ configure :test do
   DataMapper.auto_migrate!
 end
 
-#DataMapper.auto_migrate!
-#
-#user = User.new(:username => "admin")
-#user.name = "Admin"
-#user.password = "password"
-#user.is_admin = true
-#user.save
+# # Uncomment to reset the database
+# DataMapper.auto_migrate!
+# 
+# user = User.new(:username => "admin")
+# user.name = "Admin"
+# user.password = "password"
+# user.is_admin = true
+# user.save
 
 # Set up session and basic security
 before do
@@ -92,6 +93,7 @@ post "/users" do
   
   unless @user.is_admin
     flash[:error] = "You are not authorized to add new users"
+    redirect "/users"
   else    
     user = User.new(params[:new_user])
     password = "changeme"
@@ -99,12 +101,13 @@ post "/users" do
     user.save
     if user.valid?
       flash[:notice] = "New user created with password #{password.inspect}"
+      redirect "/users/#{user.id}"
     else
       errors = user.errors.full_messages;
       flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in creating new user: #{errors.join(', ')}"
+      redirect "/users"
     end
   end    
-   redirect "/users"
 end
 
 # Show details for a user
