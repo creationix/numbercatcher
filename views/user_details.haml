@@ -1,4 +1,5 @@
 %form.ui-widget{ :method => "POST", :action => "#{PAGES[:users]}/#{@user_data.id}" }
+  %input{ :name => "_method", :value => "PUT", :type => "hidden" }
   .grid_2{ :style => "text-align: right" }
     %label{ :for => "username" } Username:
   .grid_3
@@ -39,5 +40,5 @@
           %td
             - if @user.is_admin || @user_data.id == @user.id
               %form.ui-widget{ :method => "POST", :action => "/users/#{@user_data.id}/reservations/#{num.id}" }
-                %input{ :name => "_method", :value => "delete", :type => "hidden" }
+                %input{ :name => "_method", :value => "DELETE", :type => "hidden" }
                 %input{ :type => "submit", :value => "Release" }

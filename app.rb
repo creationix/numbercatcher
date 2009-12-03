@@ -114,7 +114,7 @@ get "#{PAGES[:users]}/:user_id" do |user_id|
   haml :user_details
 end
 
-post "#{PAGES[:users]}/:user_id" do |user_id|
+put "#{PAGES[:users]}/:user_id" do |user_id|
   user_data = params[:user]
   unless user_id.to_i == @user.id || @user.is_admin
     flash[:error] = "You are not authorized to do this"
