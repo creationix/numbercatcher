@@ -85,3 +85,7 @@ table.data_table th {
 table.data_table tbody tr.even { background: #eef2ff; }
 table.data_table tbody tr.odd:hover { background: #eeeeee; }
 table.data_table tbody tr.even:hover { background: #dde2ee; }
+table.data_table tbody td.empty_notice {
+  padding: 20px;
+  text-align: center;
+}
