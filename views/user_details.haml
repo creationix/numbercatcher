@@ -41,7 +41,7 @@
     %tbody
       - if @user_data.reservations.length == 0
         %tr.odd 
-          %td.empty_notice{ :colspan => 4 } No Reservations found for this user
+          %td.empty_notice{ :colspan => 5 } No Reservations found for this user
       - @user_data.reservations.each_with_index do |num, index|
         %tr{ :class => (index % 2 == 1) ? 'even' : 'odd' }
           %td&= num.numberset.name
