@@ -22,13 +22,13 @@ configure :test do
   DataMapper.auto_migrate!
 end
 
-DataMapper.auto_migrate!
-
-user = User.new(:username => "admin")
-user.name = "Admin"
-user.password = "password"
-user.is_admin = true
-user.save
+#DataMapper.auto_migrate!
+#
+#user = User.new(:username => "admin")
+#user.name = "Admin"
+#user.password = "password"
+#user.is_admin = true
+#user.save
 
 
 before do
@@ -94,21 +94,67 @@ get PAGES[:users] do
 end
 
 get "#{PAGES[:users]}/:user_id" do |user_id|
-  @user = User.get(user_id)
+  @user_data = User.get(user_id)
   haml :user_details
 end
 
-post PAGES[:users] do
-  user = User.new(params[:new_user])
-  password = "changeme"
-  user.password = password
-  user.save
-  if user.valid?
-    flash[:notice] = "New user created with password #{password.inspect}"
-  else
-    errors = user.errors.full_messages;
-    flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in creating new user: #{errors.join(', ')}"
+post "#{PAGES[:users]}/:user_id" do |user_id|
+  user_data = params[:user]
+  unless user_id.to_i == @user.id || @user.is_admin
+    flash[:error] = "You are not authorized to do this"
+  else 
+    if user_data[:password] != user_data[:password2]
+	  flash[:error] = "Passwords do not match"
+    else
+      edit_user = User.get(user_id)
+      unless user_data[:password] == ""
+	    edit_user.password = user_data[:password]
+	  end  
+      edit_user.username = user_data[:username]
+	  edit_user.name = user_data[:name]
+      edit_user.save
+	  
+	  if edit_user.valid?
+        flash[:notice] = "User data successfully saved"
+      else
+        errors = edit_user.errors.full_messages;
+        flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in updating user: #{errors.join(', ')}"
+      end
+	end    
+  end	 
+  redirect "#{PAGES[:users]}/#{user_id}"  
+end
+
+delete "#{PAGES[:users]}/:user_id/reservations/:reservation_id" do |user_id, reservation_id|
+  unless user_id.to_i == @user.id || @user.is_admin
+    flash[:error] = "You are not authorized to do this"
+  else	
+    r = Reservation.get(reservation_id)
+    if r
+      r.destroy!
+      flash[:notice] = "Reservation deleted!"
+    else
+      flash[:error] = "Reservation_id could not be deleted!"
+    end
   end
+  redirect "#{PAGES[:users]}/#{user_id}"
+end
+
+post PAGES[:users] do
+  unless @user.is_admin
+    flash[:error] = "You are not authorized to add new users"
+  else	
+    user = User.new(params[:new_user])
+    password = "changeme"
+    user.password = password
+    user.save
+    if user.valid?
+      flash[:notice] = "New user created with password #{password.inspect}"
+    else
+      errors = user.errors.full_messages;
+      flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in creating new user: #{errors.join(', ')}"
+    end
+  end	
   redirect PAGES[:users]
 end
 
