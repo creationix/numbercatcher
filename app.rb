@@ -54,7 +54,6 @@ before do
   end
 end
 
-
 get PAGES[:login] do
   redirect PAGES[:home] if @user
   haml :login
@@ -142,19 +141,19 @@ post "#{PAGES[:users]}/:user_id" do |user_id|
   redirect "#{PAGES[:users]}/#{user_id}"  
 end
 
-delete "#{PAGES[:users]}/:user_id/reservations/:reservation_id" do |user_id, reservation_id|
-  unless user_id.to_i == @user.id || @user.is_admin
-    flash[:error] = "You are not authorized to do this"
-  else    
-    reservation = Reservation.get(reservation_id)
-    if reservation
+delete "*/reservations/:reservation_id" do |redirect, reservation_id|
+  reservation = Reservation.get(reservation_id)
+  if reservation
+    unless reservation.user.id == @user.id || @user.is_admin
+      flash[:error] = "You are not authorized release this reservation!"
+    else
       reservation.destroy!
       flash[:notice] = "Reservation deleted!"
-    else
-      flash[:error] = "Reservation_id could not be deleted!"
     end
-   end
-  redirect "#{PAGES[:users]}/#{user_id}"
+  else
+    flash[:error] = "Invalid reservation cannot be deleted!"
+  end
+  redirect redirect
 end
 
 get PAGES[:sets] do

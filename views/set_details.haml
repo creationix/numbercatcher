@@ -17,4 +17,6 @@
             %td&= row.user.name
             %td
               - if @user.is_admin || row.user.id == @user.id
-                %a{ :href => "" } Release
+                %form.ui-widget{ :method => "POST", :action => "#{PAGES[:sets]}/#{@set.id}/reservations/#{row.id}" }
+                  %input{ :name => "_method", :value => "delete", :type => "hidden" }
+                  %input{ :type => "submit", :value => "Release" }
