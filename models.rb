@@ -48,6 +48,9 @@ class Numberset
   property :name, String
   property :type, Enum.new("int", "hex")
 
+  validates_is_unique :name
+  validates_present :name, :type
+  
   has n, :sequences
   has n, :reservations
 end

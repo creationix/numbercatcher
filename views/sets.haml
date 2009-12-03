@@ -1,0 +1,39 @@
+%h1.grid_12 Critical Number Sets
+.grid_12
+  %table.data_table.ui-widget
+    %thead.ui-widget-header
+      %tr
+        %th Number Set
+        %th Type
+        %th # Available
+        %th # Reserved 
+        %th % Free
+        %th Actions
+    %tbody
+      - @sets.each_with_index do |set, index|
+        - total = set.sequences.inject(0) {|sum, seq| sum + seq.max - seq.min}
+        - used = set.reservations.length
+        %tr{ :class => (index % 2 == 1) ? 'even' : 'odd' }
+          %td&= set.name
+          %td&= set.type
+          %td&= total - used
+          %td&= used
+          %td&= total == 0 ? "na" : "#{(100 * (total - used) / total)}%"
+          %td
+            %a{ :href => "#{PAGES[:sets]}/#{set.id}" } Details
+- if @user.is_admin      
+  .ui-widget.ui-corner-all
+    %form{ :method => "POST", :action => PAGES[:sets] }
+      .grid_3
+        %label{ :for => "name" } Add a new number set
+        %br
+        %input#name{ :type => "text", :name => "new_set[name]" }      
+      .grid_2
+        %label{ :for => "type" } 
+        %br
+        %select#type{ :name => "new_set[type]" }
+          %option{ :value => "int"} Integer
+          %option{ :value => "hex"} Hex
+      .grid_2
+        %br
+        %input{ :type => "submit", :value => "Create" }
