@@ -1,9 +1,7 @@
 %html
   %head
-    %title Number Catcher
+    %title&= "#{@title} - Number Catcher"
     %link{ :href => "/theme/jquery-ui-1.7.2.custom.css", :media => "all", :rel => "stylesheet", :type => "text/css" }
-    / %link{ :href => "/img/reset.css", :media => "all", :rel => "stylesheet", :type => "text/css" }
-    / %link{ :href => "/img/text.css", :media => "all", :rel => "stylesheet", :type => "text/css" }
     %link{ :href => "/img/960.css", :media => "all", :rel => "stylesheet", :type => "text/css" }
     %link{ :href => "/img/style.css", :media => "all", :rel => "stylesheet", :type => "text/css" }
   %body
@@ -11,24 +9,27 @@
       - if @user
         &= "Welcome #{@user.name}"
     - if @links
-      %p#nav-links
-        - @links.each do |path, label|
-          %a{ :href => path, :class => (path == request.path_info) ? "current" : nil }
-            &= label
-          - unless path == "/logout" || path == "/"
-            |
+      #nav-links.clearfix
+        .container_12
+          - @links.each do |path, label|
+            %a.grid_2{ :href => path, :class => (path == request.path_info) ? "current" : nil }
+              &= label
     #content
-      - if notice = flash[:notice]
-        .ui-state-highlight.ui-corner-all{ :style => "margin-bottom: 20px; padding: 0 .7em;" }
-          %p
-            %span.ui-icon.ui-icon-info{ :style => "float: left; margin-right: .3em;" }
-            %span.flash-notice&= notice
-      - if error = flash[:error]
-        .ui-state-error.ui-corner-all{ :style => "margin-bottom: 20px; padding: 0 .7em;" }
-          %p
-            %span.ui-icon.ui-icon-alert{ :style => "float: left; margin-right: .3em;" }
-            %span.flash-error&= error
-      .container_12.clearfix= yield
+      .container_12.clearfix
+        - if notice = flash[:notice]
+          .ui-state-highlight.ui-corner-all{ :style => "margin-bottom: 20px; padding: 0 .7em;" }
+            %p
+              %span.ui-icon.ui-icon-info{ :style => "float: left; margin-right: .3em;" }
+              %span.flash-notice&= notice
+        - if error = flash[:error]
+          .ui-state-error.ui-corner-all{ :style => "margin-bottom: 20px; padding: 0 .7em;" }
+            %p
+              %span.ui-icon.ui-icon-alert{ :style => "float: left; margin-right: .3em;" }
+              %span.flash-error&= error
+        .container_12.grid_12
+          %h1{ :style => "margin:0 0 20px;"}&= @title
+        .clear
+        = yield
     #footer
       &copy; 2009 Tektronix. All rights reserved.
       %a{ :href => "/help", :class => ("/help" == request.path_info) ? "current" : nil  }

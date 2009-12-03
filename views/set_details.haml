@@ -1,4 +1,3 @@
-%h1.grid_12&= @set.name
 .grid_12
   %table.data_table.ui-widget
     %thead.ui-widget-header
@@ -8,6 +7,9 @@
         %th Reserved Since
         %th Actions
     %tbody
+      - if @set.reservations.length == 0
+        %tr.odd 
+          %td.empty_notice{ :colspan => 4 } No Reservations found for this set
       - @set_data.each_with_index do |row, index|
         %tr{ :class => (index % 2 == 1) ? 'even' : 'odd' }
           - if row.class == Sequence

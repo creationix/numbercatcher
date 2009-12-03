@@ -1,4 +1,8 @@
-
+.rounded_corners (@radius: 5px) {
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+  border-radius: @radius;
+}
 
 body {
   border: 0;
@@ -6,6 +10,7 @@ body {
   margin: 0;
   background-color: #1f3d63;
   font-size: 14px;
+  font-family: Georgia, serif;
 }
 
 #header {
@@ -30,19 +35,27 @@ body {
   padding: 10px 15px;
   border-top: 1px solid #4c62b6;
   border-bottom: 1px solid #4c62b6;
+  a {
+    .rounded_corners(10px);
+    background-color: #4c62b6;
+    text-decoration: none;
+    padding: 2px 0;
+    text-align: center;
+    font-size: 13px;
+  }
   a:link, a:active, a:visited, a {
-    color: #2f47d3;
+/*    color: ;*/
+    color: #8bb6dd;
+
   }
-  a:hover {
-    color: #304876;
-  }
-  a.current {
-    font-weight: bold;
+  a:hover, a.current {
+    color: #fff;
+    background-color: #2f47d3;
   }
 }
 
 #content {
-  padding: 0 20px 20px 20px;
+  padding: 20px;
   background-color: #fff;
 }
 #footer {

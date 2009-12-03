@@ -3,21 +3,21 @@
   .grid_2{ :style => "text-align: right" }
     %label{ :for => "username" } Username:
   .grid_3
-    %input{ :id => "username", :name => "user[username]", :value => @user_data.username }
+    %input{ :tabindex => 1, :id => "username", :name => "user[username]", :value => @user_data.username }
   .grid_2.prefix_2{ :style => "text-align: right" }
     %label{ :for => "password" } Password:
   .grid_3
-    %input{ :id => "password", :name => "user[password]", :type => "password"}
+    %input{ :tabindex => 3, :id => "password", :name => "user[password]", :type => "password"}
 
   .grid_2{ :style => "text-align: right" }
     %label{ :for => "name" } Real Name:
   .grid_3
-    %input{ :id => "name", :name => "user[name]", :value => @user_data.name }
+    %input{ :tabindex => 2, :id => "name", :name => "user[name]", :value => @user_data.name }
   .grid_3.prefix_4
-    %input{ :id => "password2", :name => "user[password2]", :type => "password"}
+    %input{ :tabindex => 4, :id => "password2", :name => "user[password2]", :type => "password"}
   - if @user.is_admin || @user_data.id == @user.id
     .grid_2.prefix_10
-      %input{ :type => "submit", :value => "Save Changes" }
+      %input{ :tabindex => 5, :type => "submit", :value => "Save Changes" }
 
 %h1.grid_12 My Reserved Numbers
 .grid_12

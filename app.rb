@@ -75,17 +75,20 @@ end
 
 # Show online documentation
 get "/help" do
+  @title = "Online Documentation"
   haml :help
 end
 
 # List all users
 get "/users" do
+  @title = @user.is_admin ? "User administration" : "User Listing"
   @users = User.all
   haml :users
 end
 
 # Create a new user
 post "/users" do
+  
   unless @user.is_admin
     flash[:error] = "You are not authorized to add new users"
   else    
@@ -106,6 +109,7 @@ end
 # Show details for a user
 get "/users/:user_id" do |user_id|
   @user_data = User.get(user_id)
+  @title = @user.id == @user_data.id ? "My Profile" : "#{@user_data.name}'s Profile"
   haml :user_details
 end
 
@@ -137,6 +141,18 @@ put "/users/:user_id" do |user_id|
   redirect "/users/#{user_id}"  
 end
 
+# Delete a user
+delete "/users/:user_id" do |user_id|
+  @user_data = User.get(user_id)
+  unless @user.is_admin && @user_data.id != @user.id
+    flash[:error] = "You are not authorized to delete the #{@user_data.username.inspect} user."
+  else
+    flash[:notice] = "Successfully deleted the #{@user_data.username.inspect} user."
+    @user_data.destroy!
+  end
+  redirect "/users"
+end
+
 # Release a reservation
 delete "*/reservations/:reservation_id" do |redirect, reservation_id|
   reservation = Reservation.get(reservation_id)
@@ -155,6 +171,7 @@ end
 
 # List all number sets
 get "/sets" do
+  @title = "Critical Number Sets"
   @sets = Numberset.all
   haml :sets
 end
@@ -176,6 +193,7 @@ end
 # Get details about a single number set
 get "/sets/:set_id" do |set_id|
   @set = Numberset.get(set_id)
+  @title = "Details for the #{@set.name.inspect} set"
   sequences = @set.sequences
   reservations = @set.reservations
   
