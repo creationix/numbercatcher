@@ -49,6 +49,7 @@ end
 # Show login page
 get "/" do
   redirect "/users/#{@user.id}" if @user
+  @title = "Please Login"
   haml :login
 end
 
@@ -126,8 +127,10 @@ put "/users/:user_id" do |user_id|
       unless user_data[:password] == ""
         edit_user.password = user_data[:password]
       end  
+
       edit_user.username = user_data[:username]
       edit_user.name = user_data[:name]
+      edit_user.is_admin = user_data[:is_admin] if @user.is_admin
       edit_user.save
      
       if edit_user.valid?
@@ -201,10 +204,18 @@ get "/sets/:set_id" do |set_id|
   reservations.each do |reservation|
     for sequence in sequences do
       if reservation.number == sequence.min
-        sequence.min += 1
+        if sequence.min == sequence.max
+          sequences.delete sequence
+        else
+          sequence.min += 1
+        end
         break
       elsif reservation.number == sequence.max
-        sequence.max -= 1
+        if sequence.min == sequence.max
+          sequences.delete sequence
+        else
+          sequence.max -= 1
+        end
         break
       elsif reservation.number > sequence.min && reservation.number < sequence.max
         sequences.delete sequence
