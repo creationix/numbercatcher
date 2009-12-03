@@ -22,6 +22,15 @@ configure :test do
   DataMapper.auto_migrate!
 end
 
+DataMapper.auto_migrate!
+
+user = User.new(:username => "admin")
+user.name = "Admin"
+user.password = "password"
+user.is_admin = true
+user.save
+
+
 before do
   content_type "text/html", :charset => 'utf-8'
   
