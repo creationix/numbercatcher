@@ -237,11 +237,11 @@ end
 
 # Create a new number reservation
 post "/sets/:set_id/reservations" do |set_id|
-  number = params["number"].to_i
+  set = Numberset.get(set_id)
+  number = set.type == 'ip' ? params["number"].from_ip : params["number"].to_i
   
   # Find the next available number
   if params[:autoreserve]
-    set = Numberset.get(set_id)
     res = set.reservations
     seqs = set.sequences
     for seq in seqs
@@ -281,15 +281,17 @@ post "/sets/:set_id/sequences" do |set_id|
     redirect "/sets/#{set_id}/"
     next
   end
-  min = params["min"].to_i
-  max = params["max"].to_i
+  
+  set = Numberset.get(set_id)
+
+  min = set.type == 'ip' ? params["min"].from_ip : params["min"].to_i
+  max = set.type == 'ip' ? params["max"].from_ip : params["max"].to_i
   if min > max
     flash[:error] = "The min number should be greater than the max number."
     redirect "/sets/#{set_id}/"
     next
   end
 
-  set = Numberset.get(set_id)
   
   if params["remove"]
     set.sequences.each do |sequence|

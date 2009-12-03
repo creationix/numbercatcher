@@ -13,10 +13,10 @@
       - @set_data.each_with_index do |row, index|
         %tr{ :class => (index % 2 == 1) ? 'even' : 'odd' }
           - if row.class == Sequence
-            %td&= row.min == row.max ? row.min : "#{row.min}-#{row.max}"
+            %td&= row.min == row.max ? row.formatted_min : "#{row.formatted_min}-#{row.formatted_max}"
             %td{ :colspan => 3 } Available
           - else
-            %td&= row.number
+            %td&= row.formatted_number
             %td&= row.user.name
             %td&= row.created_at.strftime("%Y-%m-%d")
             %td

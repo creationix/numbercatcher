@@ -64,6 +64,14 @@ class Sequence
   property :max, Integer
 
   belongs_to :numberset
+
+  def formatted_min
+    numberset.type == 'ip' ? min.to_ip : min.to_s
+  end
+  def formatted_max
+    numberset.type == 'ip' ? max.to_ip : max.to_s
+  end
+
 end
 
 # This is the reservation for a particular number for a particular set for a 
@@ -79,6 +87,10 @@ class Reservation
   
   belongs_to :numberset
   belongs_to :user
+  
+  def formatted_number
+    numberset.type == 'ip' ? number.to_ip : number.to_s
+  end
   
   def check_ranges
     numberset.sequences.each do |sequence|
