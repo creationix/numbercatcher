@@ -30,7 +30,7 @@ body {
 #nav-links a:hover { color: #304876; }
 #nav-links a.current { font-weight: bold; }
 #content {
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   background-color: #ffffff;
 }
 #footer {

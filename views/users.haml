@@ -1,22 +1,22 @@
-%h1 System Users
-%table.data_table.ui-widget
-  %thead.ui-widget-header
-    %tr
-      %th Username
-      %th Name
-      %th Type
-      %th # Reserved Numbers
-      %th Actions
-  %tbody
-    - @users.each_with_index do |user, index|
-      %tr{ :class => (index % 2 == 1) ? 'even' : 'odd' }
-        %td&= user.username
-        %td&= user.name
-        %td&= user.is_admin ? "Administrator" : "Normal User"
-        %td
-        %td
-          %a{ :href => "#{PAGES[:users]}/#{user.id}" } Details
-          %a{ :href => "#{PAGES[:users]}/#{user.id};delete" } Delete
+%h1.grid_12 System Users
+.grid_12
+  %table.data_table.ui-widget
+    %thead.ui-widget-header
+      %tr
+        %th Username
+        %th Name
+        %th Type
+        %th # Reserved Numbers
+        %th Actions
+    %tbody
+      - @users.each_with_index do |user, index|
+        %tr{ :class => (index % 2 == 1) ? 'even' : 'odd' }
+          %td&= user.username
+          %td&= user.name
+          %td&= user.is_admin ? "Administrator" : "Normal User"
+          %td
+          %td
+            %a{ :href => "#{PAGES[:users]}/#{user.id}" } Details
 .ui-widget.ui-corner-all
   %form{ :method => "POST", :action => PAGES[:users] }
     .grid_3
