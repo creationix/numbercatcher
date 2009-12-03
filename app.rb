@@ -262,7 +262,7 @@ post "/sets/:set_id/reservations" do |set_id|
   reservation.user_id = @user.id
   reservation.save
   if reservation.valid?
-    flash[:notice] = "Successfully reserved #{number.inspect}."
+    flash[:notice] = "Successfully reserved #{reservation.formatted_number}."
   else
     errors = reservation.errors.full_messages;
     flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in reserving number #{number.inspect}: #{errors.join(', ')}"
