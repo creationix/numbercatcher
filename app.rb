@@ -103,12 +103,13 @@ post "/users" do
    redirect "/users"
 end
 
-#
+# Show details for a user
 get "/users/:user_id" do |user_id|
   @user_data = User.get(user_id)
   haml :user_details
 end
 
+# Update details for a user
 put "/users/:user_id" do |user_id|
   user_data = params[:user]
   unless user_id.to_i == @user.id || @user.is_admin
@@ -136,6 +137,7 @@ put "/users/:user_id" do |user_id|
   redirect "/users/#{user_id}"  
 end
 
+# Release a reservation
 delete "*/reservations/:reservation_id" do |redirect, reservation_id|
   reservation = Reservation.get(reservation_id)
   if reservation
@@ -151,11 +153,13 @@ delete "*/reservations/:reservation_id" do |redirect, reservation_id|
   redirect redirect
 end
 
+# List all number sets
 get "/sets" do
   @sets = Numberset.all
   haml :sets
 end
 
+# Create a new number set
 post "/sets" do
   set = Numberset.new(params[:new_set])  
   set.save
@@ -169,6 +173,7 @@ post "/sets" do
   end  
 end
 
+# Get details about a single number set
 get "/sets/:set_id" do |set_id|
   @set = Numberset.get(set_id)
   sequences = @set.sequences
@@ -201,6 +206,7 @@ get "/sets/:set_id" do |set_id|
   haml :set_details
 end
 
+# Create a new number reservation
 post "/sets/:set_id/reservations" do |set_id|
   number = params["number"].to_i
   
@@ -224,16 +230,17 @@ post "/sets/:set_id/reservations" do |set_id|
   reservation.user_id = @user.id
   reservation.save
   if reservation.valid?
-    flash[:notice] = "New reservation created"
+    flash[:notice] = "Successfully reserved #{number.inspect}."
   else
     errors = reservation.errors.full_messages;
-    flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in reserving number #{number}: #{errors.join(', ')}"
+    flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in reserving number #{number.inspect}: #{errors.join(', ')}"
   end
   
   redirect "/sets/#{set_id}"
 
 end
 
+# 404 fallback
 not_found do
   haml :not_found
 end
