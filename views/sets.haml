@@ -19,20 +19,21 @@
           %td&= used
           %td&= total == 0 ? "na" : "#{(100 * (total - used) / total)}%"
           %td
-            %a{ :href => "/sets/#{set.id}" } Details
+            %form.ui-widget{ :style => "margin:0;", :method => "GET", :action => "/sets/#{set.id}" }
+              %input.ui-state-default.ui-corner-all{ :type => "submit", :value => "Details" }
 - if @user.is_admin      
-  .ui-widget.ui-corner-all
+  .ui-widget.ui-corner-all{ :style => "padding-top:20px;clear:both" }
     %form{ :method => "POST", :action => "/sets" }
       .grid_3
         %label{ :for => "name" } Add a new number set
         %br
-        %input#name{ :type => "text", :name => "new_set[name]" }      
+        %input#name.ui-state-default.ui-corner-all{ :type => "text", :name => "new_set[name]" }      
       .grid_2
         %label{ :for => "type" } 
         %br
-        %select#type{ :name => "new_set[type]" }
+        %select#type.ui-state-default.ui-corner-all{ :name => "new_set[type]" }
           %option{ :value => "int"} Integer
           %option{ :value => "hex"} Hex
       .grid_2
         %br
-        %input{ :type => "submit", :value => "Create" }
+        %input.ui-state-default.ui-corner-all{ :type => "submit", :value => "Create" }

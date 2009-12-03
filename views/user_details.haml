@@ -3,21 +3,30 @@
   .grid_2{ :style => "text-align: right" }
     %label{ :for => "username" } Username:
   .grid_3
-    %input{ :tabindex => 1, :id => "username", :name => "user[username]", :value => @user_data.username }
+    %input.ui-state-default.ui-corner-all{ :tabindex => 1, :id => "username", :name => "user[username]", :value => @user_data.username }
   .grid_2.prefix_2{ :style => "text-align: right" }
     %label{ :for => "password" } Password:
   .grid_3
-    %input{ :tabindex => 3, :id => "password", :name => "user[password]", :type => "password"}
+    %input.ui-state-default.ui-corner-all{ :tabindex => 3, :id => "password", :name => "user[password]", :type => "password"}
 
   .grid_2{ :style => "text-align: right" }
     %label{ :for => "name" } Real Name:
   .grid_3
-    %input{ :tabindex => 2, :id => "name", :name => "user[name]", :value => @user_data.name }
-  .grid_3.prefix_4
-    %input{ :tabindex => 4, :id => "password2", :name => "user[password2]", :type => "password"}
+    %input.ui-state-default.ui-corner-all{ :tabindex => 2, :id => "name", :name => "user[name]", :value => @user_data.name }
+  .grid_2.prefix_2{ :style => "text-align: right" }
+    %label{ :for => "password2" } Password again:
+  .grid_3
+    %input.ui-state-default.ui-corner-all{ :tabindex => 4, :id => "password2", :name => "user[password2]", :type => "password"}
+  - if @user.is_admin
+    .grid_2{ :style => "text-align: right" }
+      %label{ :for => "username" } Type:
+    .grid_3
+      %select#is_admin.ui-state-default.ui-corner-all{ :name => "user[is_admin]" }
+        %option{ :value => "false", :selected => !@user.is_admin } Normal User
+        %option{ :value => "true" , :selected => @user.is_admin } Administrator
   - if @user.is_admin || @user_data.id == @user.id
-    .grid_2.prefix_10
-      %input{ :tabindex => 5, :type => "submit", :value => "Save Changes" }
+    .grid_2{ :class => "prefix_#{@user.is_admin ? 4 : 10}" }
+      %input.ui-state-default.ui-corner-all{ :tabindex => 5, :type => "submit", :value => "Save Changes" }
 
 %h1.grid_12 My Reserved Numbers
 .grid_12
@@ -39,6 +48,6 @@
           %td&= num.created_at.strftime("%Y-%m-%d")
           %td
             - if @user.is_admin || @user_data.id == @user.id
-              %form.ui-widget{ :method => "POST", :action => "/users/#{@user_data.id}/reservations/#{num.id}" }
+              %form.ui-widget{ :style => "float:left;margin:0;", :method => "POST", :action => "/users/#{@user_data.id}/reservations/#{num.id}" }
                 %input{ :name => "_method", :value => "DELETE", :type => "hidden" }
-                %input{ :type => "submit", :value => "Release" }
+                %input.ui-state-default.ui-corner-all{ :type => "submit", :value => "Release" }

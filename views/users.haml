@@ -13,30 +13,31 @@
           %td&= user.username
           %td&= user.name
           %td&= user.is_admin ? "Administrator" : "Normal User"
+          %td&= user.reservations.length
           %td
-          %td
+            %form.ui-widget{ :style => "float:left;margin:0;", :method => "GET", :action => "/users/#{user.id}" }
+              %input.ui-state-default.ui-corner-all{ :type => "submit", :value => "Details" }
             - if @user.is_admin && user.id != @user.id
-              %form.ui-widget{ :method => "POST", :action => "/users/#{user.id}" }
+              %form.ui-widget{ :style => "float:left;margin:0;", :method => "POST", :action => "/users/#{user.id}" }
                 %input{ :name => "_method", :value => "DELETE", :type => "hidden" }
-                %input{ :type => "submit", :value => "Delete" }          
-            %a{ :href => "/users/#{user.id}" } Details
+                %input.ui-state-default.ui-corner-all{ :type => "submit", :value => "Remove" }
 - if @user.is_admin			
-  .ui-widget.ui-corner-all
+  .ui-widget.ui-corner-all{ :style => "padding-top:20px;clear:both" }
     %form{ :method => "POST", :action => "/users" }
       .grid_3
         %label{ :for => "username" } New Username
         %br
-        %input#username{ :type => "text", :name => "new_user[username]" }
+        %input#username.ui-state-default.ui-corner-all{ :type => "text", :name => "new_user[username]" }
       .grid_3
         %label{ :for => "name" } New Real Name
         %br
-        %input#name{ :type => "text", :name => "new_user[name]" }
+        %input#name.ui-state-default.ui-corner-all{ :type => "text", :name => "new_user[name]" }
       .grid_2
         %label{ :for => "is_admin" } Type of user
         %br
-        %select#is_admin{ :name => "new_user[is_admin]" }
+        %select#is_admin.ui-state-default.ui-corner-all{ :name => "new_user[is_admin]" }
           %option{ :value => "false" } Normal User
           %option{ :value => "true" } Administrator
       .grid_2
         %br
-        %input{ :type => "submit", :value => "Add New User" }
+        %input.ui-state-default.ui-corner-all{ :type => "submit", :value => "Add New User" }

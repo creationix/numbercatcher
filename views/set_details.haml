@@ -21,17 +21,17 @@
             %td&= row.created_at.strftime("%Y-%m-%d")
             %td
               - if @user.is_admin || row.user.id == @user.id
-                %form.ui-widget{ :method => "POST", :action => "/sets/#{@set.id}/reservations/#{row.id}" }
+                %form.ui-widget{ :style => "margin:0;", :method => "POST", :action => "/sets/#{@set.id}/reservations/#{row.id}" }
                   %input{ :name => "_method", :value => "DELETE", :type => "hidden" }
-                  %input{ :type => "submit", :value => "Release" }
+                  %input.ui-state-default.ui-corner-all{ :type => "submit", :value => "Release" }
 
 .ui-widget.ui-corner-all{ :style => "padding-top:20px;clear:both" }
   %form{ :method => "POST", :action => "/sets/#{@set.id}/reservations" }
     .grid_1{ :style => "text-align: right" }
       %label{ :for => "number" } Number:
     .grid_2
-      %input#number{ :type => "text", :name => "number" }
+      %input#number.ui-state-default.ui-corner-all{ :type => "text", :name => "number" }
     .grid_2
-      %input{ :type => "submit", :value => "Reserve" }
+      %input.ui-state-default.ui-corner-all{ :type => "submit", :value => "Reserve" }
     .grid_2.prefix_1
-      %input{ :type => "submit", :name => "autoreserve", :value => "Auto Reserve" }
+      %input.ui-state-default.ui-corner-all{ :type => "submit", :name => "autoreserve", :value => "Auto Reserve" }
