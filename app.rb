@@ -265,7 +265,7 @@ post "/sets/:set_id/reservations" do |set_id|
     flash[:notice] = "Successfully reserved #{reservation.formatted_number}."
   else
     errors = reservation.errors.full_messages;
-    flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in reserving number #{number.inspect}: #{errors.join(', ')}"
+    flash[:error] = "Problem#{errors.length == 1 ? '' : 's'} in reserving number #{reservation.formatted_number}: #{errors.join(', ')}"
   end
   
   redirect "/sets/#{set_id}"
